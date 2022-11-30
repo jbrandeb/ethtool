@@ -1,13 +1,10 @@
+// SPDX-License-Identifier: GPL-2.0-only
 /****************************************************************************
  * Support for the Altera Triple Speed Ethernet 10/100/1000 Controller
  *
  * Copyright (C) 2014 Altera Corporation
  *
  * Author: Vince Bridgers <vbridgers2013@gmail.com>
- *
- * This program is free software; you can redistribute it and/or modify it
- * under the terms of the GNU General Public License version 2 as published
- * by the Free Software Foundation, incorporated herein by reference.
  */
 
 #include <stdio.h>

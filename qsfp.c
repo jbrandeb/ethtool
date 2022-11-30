@@ -1,14 +1,10 @@
+// SPDX-License-Identifier: GPL-2.0-or-later
 /*
  * qsfp.c: Implements SFF-8636 based QSFP+/QSFP28 Diagnostics Memory map.
  *
  * Copyright 2010 Solarflare Communications Inc.
  * Aurelien Guillaume <aurelien@iwi.me> (C) 2012
  * Copyright (C) 2014 Cumulus networks Inc.
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Freeoftware Foundation; either version 2 of the License, or
- * (at your option) any later version.
  *
  *  Vidya Ravipati <vidya@cumulusnetworks.com>
  *   This implementation is loosely based on current SFP parser
