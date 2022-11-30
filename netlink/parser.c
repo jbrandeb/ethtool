@@ -617,7 +617,7 @@ static int parse_numeric_bitset(struct nl_context *nlctx, uint16_t type,
 		len2 = strlen(maskptr);
 		if (len2 > len1)
 			nwords = DIV_ROUND_UP(len2, 8);
-		mask = calloc(nwords, sizeof(uint32_t));
+		mask = calloc(nwords, sizeof(*mask));
 		if (!mask)
 			return -ENOMEM;
 		ret = __parse_num_string(maskptr, strlen(maskptr), mask,
@@ -629,7 +629,7 @@ static int parse_numeric_bitset(struct nl_context *nlctx, uint16_t type,
 		nbits = ret;
 	}
 
-	value = calloc(nwords, sizeof(uint32_t));
+	value = calloc(nwords, sizeof(*value));
 	if (!value) {
 		free(mask);
 		return -ENOMEM;
@@ -1058,7 +1058,7 @@ int nl_parser(struct nl_context *nlctx, const struct param_parser *params,
 		buff->orig_len = msgbuff_len(msgbuff);
 	}
 	ret = -ENOMEM;
-	params_seen = calloc(DIV_ROUND_UP(n_params, 64), sizeof(uint64_t));
+	params_seen = calloc(DIV_ROUND_UP(n_params, 64), sizeof(*params_seen));
 	if (!params_seen)
 		goto out_free_buffs;
 

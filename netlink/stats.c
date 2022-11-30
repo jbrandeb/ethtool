@@ -239,7 +239,7 @@ static int stats_parse_all_groups(struct nl_context *nlctx, uint16_t type,
 	std_str = global_stringset(ETH_SS_STATS_STD, nlctx->ethnl2_socket);
 
 	nbits = get_count(std_str);
-	bits = calloc(DIV_ROUND_UP(nbits, 32), sizeof(uint32_t));
+	bits = calloc(DIV_ROUND_UP(nbits, 32), sizeof(*bits));
 	if (!bits)
 		return -ENOMEM;
 

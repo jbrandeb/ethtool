@@ -524,7 +524,7 @@ static int rmgr_init(struct cmd_context *ctx, struct rmgr_ctrl *rmgr)
 	}
 
 	/* initialize bitmap for storage of valid locations */
-	rmgr->slot = calloc(1, BITS_TO_LONGS(rmgr->size) * sizeof(long));
+	rmgr->slot = calloc(BITS_TO_LONGS(rmgr->size), sizeof(*rmgr->slot));
 	if (!rmgr->slot) {
 		perror("rmgr: Cannot allocate memory for RX class rules");
 		return -1;
