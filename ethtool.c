@@ -6345,6 +6345,15 @@ int main(int argc, char **argp)
 
 	init_global_link_mode_masks();
 
+	/* verify the arguments are non-null */
+	k = 0;
+	while (k <= argc && argp[k])
+		k++;
+	if (k != argc) {
+		fprintf(stderr, "ethtool: inconsistent command line (OS bug?)\n");
+		return 1;
+	}
+
 	/* Skip command name */
 	argp++;
 	argc--;
