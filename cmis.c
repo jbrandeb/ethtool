@@ -727,16 +727,10 @@ cmis_show_dom_chan_lvl_rx_power_bank(const struct cmis_memory_map *map,
 
 	for (i = 0; i < CMIS_CHANNELS_PER_BANK; i++) {
 		int chan = bank * CMIS_CHANNELS_PER_BANK + i;
-		char *rx_power_str;
 		char fmt_str[80];
 
-		if (!sd->rx_power_type)
-			rx_power_str = "Receiver signal OMA";
-		else
-			rx_power_str = "Rcvr signal avg optical power";
-
-		snprintf(fmt_str, 80, "%s (Channel %d)", rx_power_str,
-			 chan + 1);
+		snprintf(fmt_str, 80, "%s (Channel %d)",
+			 sff_rx_power_string(sd), chan + 1);
 		PRINT_xX_PWR(fmt_str, sd->scd[chan].rx_power);
 	}
 }

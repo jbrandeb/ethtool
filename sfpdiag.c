@@ -242,7 +242,6 @@ static void sff8472_parse_eeprom(const __u8 *id, struct sff_diags *sd)
 void sff8472_show_all(const __u8 *id)
 {
 	struct sff_diags sd = {0};
-	char *rx_power_string = NULL;
 	int i;
 
 	sff8472_parse_eeprom(id, &sd);
@@ -256,12 +255,7 @@ void sff8472_show_all(const __u8 *id)
 	PRINT_BIAS("Laser bias current", sd.bias_cur[MCURR]);
 	PRINT_xX_PWR("Laser output power", sd.tx_power[MCURR]);
 
-	if (!sd.rx_power_type)
-		rx_power_string = "Receiver signal OMA";
-	else
-		rx_power_string = "Receiver signal average optical power";
-
-	PRINT_xX_PWR(rx_power_string, sd.rx_power[MCURR]);
+	PRINT_xX_PWR(sff_rx_power_string(&sd), sd.rx_power[MCURR]);
 
 	PRINT_TEMP("Module temperature", sd.sfp_temp[MCURR]);
 	PRINT_VCC("Module voltage", sd.sfp_voltage[MCURR]);

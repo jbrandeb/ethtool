@@ -188,6 +188,15 @@ struct sff_diags {
 	struct sff_channel_diags scd[MAX_CHANNEL_NUM];
 };
 
+static const char rx_power_oma[] = "Receiver Signal OMA";
+static const char rx_power_average[] = "Receiver Signal average optical power";
+
+/* helper for returning the power strings */
+static inline const char *sff_rx_power_string(const struct sff_diags *sd)
+{
+	return sd->rx_power_type ? rx_power_average : rx_power_oma;
+}
+
 double convert_mw_to_dbm(double mw);
 void sff_show_value_with_unit(const __u8 *id, unsigned int reg,
 			      const char *name, unsigned int mult,

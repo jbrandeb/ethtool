@@ -798,7 +798,6 @@ out:
 static void sff8636_show_dom(const struct sff8636_memory_map *map)
 {
 	struct sff_diags sd = {0};
-	char *rx_power_string = NULL;
 	char power_string[MAX_DESC_SIZE];
 	int i;
 
@@ -846,14 +845,13 @@ static void sff8636_show_dom(const struct sff8636_memory_map *map)
 		PRINT_xX_PWR(power_string, sd.scd[i].tx_power);
 	}
 
-	if (!sd.rx_power_type)
-		rx_power_string = "Receiver signal OMA";
-	else
-		rx_power_string = "Rcvr signal avg optical power";
-
 	for (i = 0; i < SFF8636_MAX_CHANNEL_NUM; i++) {
-		snprintf(power_string, MAX_DESC_SIZE, "%s(Channel %d)",
-					rx_power_string, i+1);
+		int chars;
+
+		chars = snprintf(power_string, MAX_DESC_SIZE, "%s",
+				 sff_rx_power_string(&sd));
+		snprintf(power_string + chars, MAX_DESC_SIZE - chars,
+			 "(Channel %d)", i + 1);
 		PRINT_xX_PWR(power_string, sd.scd[i].rx_power);
 	}
 
