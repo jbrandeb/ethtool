@@ -54,8 +54,7 @@ static bool __prefix_0x(const char *p)
 	return p[0] == '0' && (p[1] == 'x' || p[1] == 'X');
 }
 
-static float parse_float(const char *arg, float *result, float min,
-			 float max)
+static int parse_float(const char *arg, float *result, float min, float max)
 {
 	char *endptr;
 	float val;
@@ -237,7 +236,7 @@ int nl_parse_direct_m2cm(struct nl_context *nlctx, uint16_t type,
 			 struct nl_msg_buff *msgbuff, void *dest)
 {
 	const char *arg = *nlctx->argp;
-	float meters;
+	float meters = 0.0;
 	uint32_t cm;
 	int ret;
 
