@@ -22,7 +22,6 @@ static int permaddr_prep_request(struct nl_socket *nlsk)
 	struct nl_context *nlctx = nlsk->nlctx;
 	const char *devname = nlctx->ctx->devname;
 	struct nl_msg_buff *msgbuff = &nlsk->msgbuff;
-	struct ifinfomsg *ifinfo;
 	struct nlmsghdr *nlhdr;
 	int ret;
 
@@ -35,13 +34,13 @@ static int permaddr_prep_request(struct nl_socket *nlsk)
         ret = msgbuff_realloc(msgbuff, MNL_SOCKET_BUFFER_SIZE);
         if (ret < 0)
                 return ret;
-        memset(msgbuff->buff, '\0', NLMSG_HDRLEN + sizeof(*ifinfo));
+	memset(msgbuff->buff, '\0', NLMSG_HDRLEN + sizeof(struct ifinfomsg));
 
 	nlhdr = mnl_nlmsg_put_header(msgbuff->buff);
 	nlhdr->nlmsg_type = RTM_GETLINK;
 	nlhdr->nlmsg_flags = nlm_flags;
 	msgbuff->nlhdr = nlhdr;
-	ifinfo = mnl_nlmsg_put_extra_header(nlhdr, sizeof(*ifinfo));
+	mnl_nlmsg_put_extra_header(nlhdr, sizeof(struct ifinfomsg));
 
 	if (devname) {
 		uint16_t type = IFLA_IFNAME;
