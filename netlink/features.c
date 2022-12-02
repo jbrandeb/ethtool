@@ -57,7 +57,7 @@ static int prepare_feature_results(const struct nlattr *const *tb,
 
 static bool feature_on(const uint32_t *bitmap, unsigned int idx)
 {
-	return bitmap[idx / 32] & (1 << (idx % 32));
+	return bitmap[idx / 32] & (1UL << (idx % 32));
 }
 
 static void dump_feature(const struct feature_results *results,
@@ -302,7 +302,7 @@ static void set_sf_req_mask(struct nl_context *nlctx, unsigned int idx)
 {
 	struct sfeatures_context *sfctx = nlctx->cmd_private;
 
-	sfctx->req_mask[idx / 32] |= (1 << (idx % 32));
+	sfctx->req_mask[idx / 32] |= (1UL << (idx % 32));
 }
 
 static int fill_legacy_flag(struct nl_context *nlctx, const char *flag_name,

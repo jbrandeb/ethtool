@@ -75,7 +75,7 @@ typedef enum {
 }CMD3_BITS;
 typedef enum {
 
-	INTR			= (1 << 31),
+	INTR			= (1UL << 31),
 	PCSINT			= (1 << 28),
 	LCINT			= (1 << 27),
 	APINT5			= (1 << 26),

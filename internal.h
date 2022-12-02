@@ -205,14 +205,14 @@ static inline int ethtool_link_mode_test_bit(unsigned int nr, const u32 *mask)
 {
 	if (nr >= ETHTOOL_LINK_MODE_MASK_MAX_KERNEL_NBITS)
 		return !!0;
-	return !!(mask[nr / 32] & (1 << (nr % 32)));
+	return !!(mask[nr / 32] & (1UL << (nr % 32)));
 }
 
 static inline int ethtool_link_mode_set_bit(unsigned int nr, u32 *mask)
 {
 	if (nr >= ETHTOOL_LINK_MODE_MASK_MAX_KERNEL_NBITS)
 		return -1;
-	mask[nr / 32] |= (1 << (nr % 32));
+	mask[nr / 32] |= (1UL << (nr % 32));
 	return 0;
 }
 
