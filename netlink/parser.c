@@ -874,7 +874,7 @@ int nl_parse_bitset(struct nl_context *nlctx, uint16_t type, const void *data,
  * optionally followed by '/' and another numeric value (mask, unless no_mask
  * is set), or a string consisting of characters corresponding to bit indices.
  * The @data parameter points to struct char_bitset_parser_data. Generates
- * biset nested attribute. Fails if type is zero or if @dest is not null.
+ * bitset nested attribute. Fails if type is zero or if @dest is not null.
  */
 int nl_parse_char_bitset(struct nl_context *nlctx, uint16_t type,
 			 const void *data, struct nl_msg_buff *msgbuff,
@@ -882,7 +882,7 @@ int nl_parse_char_bitset(struct nl_context *nlctx, uint16_t type,
 {
 	const struct char_bitset_parser_data *parser_data = data;
 
-	if (!type || dest) {
+	if (!type || dest || !*nlctx->argp) {
 		fprintf(stderr, "ethtool (%s): internal error parsing '%s'\n",
 			nlctx->cmd, nlctx->param);
 		return -EFAULT;
