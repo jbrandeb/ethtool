@@ -789,10 +789,10 @@ struct ethtool_sset_info {
  */
 
 enum ethtool_test_flags {
-	ETH_TEST_FL_OFFLINE	= (1 << 0),
-	ETH_TEST_FL_FAILED	= (1 << 1),
-	ETH_TEST_FL_EXTERNAL_LB	= (1 << 2),
-	ETH_TEST_FL_EXTERNAL_LB_DONE	= (1 << 3),
+	ETH_TEST_FL_OFFLINE		= _BITUL(0),
+	ETH_TEST_FL_FAILED		= _BITUL(1),
+	ETH_TEST_FL_EXTERNAL_LB		= _BITUL(2),
+	ETH_TEST_FL_EXTERNAL_LB_DONE	= _BITUL(3),
 };
 
 /**
@@ -862,11 +862,11 @@ struct ethtool_perm_addr {
  * flag differs from the read-only value.
  */
 enum ethtool_flags {
-	ETH_FLAG_TXVLAN		= (1 << 7),	/* TX VLAN offload enabled */
-	ETH_FLAG_RXVLAN		= (1 << 8),	/* RX VLAN offload enabled */
-	ETH_FLAG_LRO		= (1 << 15),	/* LRO is enabled */
-	ETH_FLAG_NTUPLE		= (1 << 27),	/* N-tuple filters enabled */
-	ETH_FLAG_RXHASH		= (1 << 28),
+	ETH_FLAG_TXVLAN		= _BITUL(7),	/* TX VLAN offload enabled */
+	ETH_FLAG_RXVLAN		= _BITUL(8),	/* RX VLAN offload enabled */
+	ETH_FLAG_LRO		= _BITUL(15),	/* LRO is enabled */
+	ETH_FLAG_NTUPLE		= _BITUL(27),	/* N-tuple filters enabled */
+	ETH_FLAG_RXHASH		= _BITUL(28),
 };
 
 /* The following structures are for supporting RX network flow
@@ -1354,7 +1354,7 @@ struct ethtool_sfeatures {
  * The bits in the 'tx_types' and 'rx_filters' fields correspond to
  * the 'hwtstamp_tx_types' and 'hwtstamp_rx_filters' enumeration values,
  * respectively.  For example, if the device supports HWTSTAMP_TX_ON,
- * then (1 << HWTSTAMP_TX_ON) in 'tx_types' will be set.
+ * then _BITUL(HWTSTAMP_TX_ON) in 'tx_types' will be set.
  *
  * Drivers should only report the filters they actually support without
  * upscaling in the SIOCSHWTSTAMP ioctl. If the SIOCSHWSTAMP request for
@@ -1402,9 +1402,9 @@ enum ethtool_sfeatures_retval_bits {
 	ETHTOOL_F_COMPAT__BIT,
 };
 
-#define ETHTOOL_F_UNSUPPORTED   (1 << ETHTOOL_F_UNSUPPORTED__BIT)
-#define ETHTOOL_F_WISH          (1 << ETHTOOL_F_WISH__BIT)
-#define ETHTOOL_F_COMPAT        (1 << ETHTOOL_F_COMPAT__BIT)
+#define ETHTOOL_F_UNSUPPORTED   _BITUL(ETHTOOL_F_UNSUPPORTED__BIT)
+#define ETHTOOL_F_WISH          _BITUL(ETHTOOL_F_WISH__BIT)
+#define ETHTOOL_F_COMPAT        _BITUL(ETHTOOL_F_COMPAT__BIT)
 
 #define MAX_NUM_QUEUE		4096
 
@@ -1481,12 +1481,12 @@ enum ethtool_fec_config_bits {
 	ETHTOOL_FEC_LLRS_BIT,
 };
 
-#define ETHTOOL_FEC_NONE		(1 << ETHTOOL_FEC_NONE_BIT)
-#define ETHTOOL_FEC_AUTO		(1 << ETHTOOL_FEC_AUTO_BIT)
-#define ETHTOOL_FEC_OFF			(1 << ETHTOOL_FEC_OFF_BIT)
-#define ETHTOOL_FEC_RS			(1 << ETHTOOL_FEC_RS_BIT)
-#define ETHTOOL_FEC_BASER		(1 << ETHTOOL_FEC_BASER_BIT)
-#define ETHTOOL_FEC_LLRS		(1 << ETHTOOL_FEC_LLRS_BIT)
+#define ETHTOOL_FEC_NONE		_BITUL(ETHTOOL_FEC_NONE_BIT)
+#define ETHTOOL_FEC_AUTO		_BITUL(ETHTOOL_FEC_AUTO_BIT)
+#define ETHTOOL_FEC_OFF			_BITUL(ETHTOOL_FEC_OFF_BIT)
+#define ETHTOOL_FEC_RS			_BITUL(ETHTOOL_FEC_RS_BIT)
+#define ETHTOOL_FEC_BASER		_BITUL(ETHTOOL_FEC_BASER_BIT)
+#define ETHTOOL_FEC_LLRS		_BITUL(ETHTOOL_FEC_LLRS_BIT)
 
 /* CMDs currently supported */
 #define ETHTOOL_GSET		0x00000001 /* DEPRECATED, Get settings.
@@ -1695,7 +1695,7 @@ enum ethtool_link_mode_bit_indices {
 };
 
 #define __ETHTOOL_LINK_MODE_LEGACY_MASK(base_name)	\
-	(1UL << (ETHTOOL_LINK_MODE_ ## base_name ## _BIT))
+	_BITULL((ETHTOOL_LINK_MODE_ ## base_name ## _BIT))
 
 /* DEPRECATED macros. Please migrate to
  * ETHTOOL_GLINKSETTINGS/ETHTOOL_SLINKSETTINGS API. Please do NOT
@@ -1868,14 +1868,14 @@ static __inline__ int ethtool_validate_duplex(__u8 duplex)
 #define ETH_TP_MDI_AUTO		0x03 /*                  control: auto-select */
 
 /* Wake-On-Lan options. */
-#define WAKE_PHY		(1 << 0)
-#define WAKE_UCAST		(1 << 1)
-#define WAKE_MCAST		(1 << 2)
-#define WAKE_BCAST		(1 << 3)
-#define WAKE_ARP		(1 << 4)
-#define WAKE_MAGIC		(1 << 5)
-#define WAKE_MAGICSECURE	(1 << 6) /* only meaningful if WAKE_MAGIC */
-#define WAKE_FILTER		(1 << 7)
+#define WAKE_PHY		_BITUL(0)
+#define WAKE_UCAST		_BITUL(1)
+#define WAKE_MCAST		_BITUL(2)
+#define WAKE_BCAST		_BITUL(3)
+#define WAKE_ARP		_BITUL(4)
+#define WAKE_MAGIC		_BITUL(5)
+#define WAKE_MAGICSECURE	_BITUL(6) /* only meaningful if WAKE_MAGIC */
+#define WAKE_FILTER		_BITUL(7)
 
 #define WOL_MODE_COUNT		8
 
@@ -1905,14 +1905,14 @@ static __inline__ int ethtool_validate_duplex(__u8 duplex)
 #define	FLOW_RSS	0x20000000
 
 /* L3-L4 network traffic flow hash options */
-#define	RXH_L2DA	(1 << 1)
-#define	RXH_VLAN	(1 << 2)
-#define	RXH_L3_PROTO	(1 << 3)
-#define	RXH_IP_SRC	(1 << 4)
-#define	RXH_IP_DST	(1 << 5)
-#define	RXH_L4_B_0_1	(1 << 6) /* src port in case of TCP/UDP/SCTP */
-#define	RXH_L4_B_2_3	(1 << 7) /* dst port in case of TCP/UDP/SCTP */
-#define	RXH_DISCARD	(1 << 31)
+#define	RXH_L2DA	_BITUL(1)
+#define	RXH_VLAN	_BITUL(2)
+#define	RXH_L3_PROTO	_BITUL(3)
+#define	RXH_IP_SRC	_BITUL(4)
+#define	RXH_IP_DST	_BITUL(5)
+#define	RXH_L4_B_0_1	_BITUL(6) /* src port in case of TCP/UDP/SCTP */
+#define	RXH_L4_B_2_3	_BITUL(7) /* dst port in case of TCP/UDP/SCTP */
+#define	RXH_DISCARD	_BITUL(31)
 
 #define	RX_CLS_FLOW_DISC	0xffffffffffffffffULL
 #define RX_CLS_FLOW_WAKE	0xfffffffffffffffeULL
@@ -1949,16 +1949,16 @@ enum ethtool_reset_flags {
 	 * ETH_RESET_SHARED_SHIFT to reset a shared component of the
 	 * same type.
 	 */
-	ETH_RESET_MGMT		= 1 << 0,	/* Management processor */
-	ETH_RESET_IRQ		= 1 << 1,	/* Interrupt requester */
-	ETH_RESET_DMA		= 1 << 2,	/* DMA engine */
-	ETH_RESET_FILTER	= 1 << 3,	/* Filtering/flow direction */
-	ETH_RESET_OFFLOAD	= 1 << 4,	/* Protocol offload */
-	ETH_RESET_MAC		= 1 << 5,	/* Media access controller */
-	ETH_RESET_PHY		= 1 << 6,	/* Transceiver/PHY */
-	ETH_RESET_RAM		= 1 << 7,	/* RAM shared between
+	ETH_RESET_MGMT		= _BITUL(0),	/* Management processor */
+	ETH_RESET_IRQ		= _BITUL(1),	/* Interrupt requester */
+	ETH_RESET_DMA		= _BITUL(2),	/* DMA engine */
+	ETH_RESET_FILTER	= _BITUL(3),	/* Filtering/flow direction */
+	ETH_RESET_OFFLOAD	= _BITUL(4),	/* Protocol offload */
+	ETH_RESET_MAC		= _BITUL(5),	/* Media access controller */
+	ETH_RESET_PHY		= _BITUL(6),	/* Transceiver/PHY */
+	ETH_RESET_RAM		= _BITUL(7),	/* RAM shared between
 						 * multiple components */
-	ETH_RESET_AP		= 1 << 8,	/* Application processor */
+	ETH_RESET_AP		= _BITUL(8),	/* Application processor */
 
 	ETH_RESET_DEDICATED	= 0x0000ffff,	/* All components dedicated to
 						 * this interface */
