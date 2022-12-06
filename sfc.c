@@ -3773,7 +3773,7 @@ print_field_value(const struct efx_nic_reg_field *field, const u8 *buf)
 		digit = buf[left >> 3];
 		if ((left & 7) + sig_bits > 8)
 			digit |= buf[(left >> 3) + 1] << 8;
-		digit = (digit >> (left & 7)) & ((1 << sig_bits) - 1);
+		digit = (digit >> (left & 7)) & (_BITUL(sig_bits) - 1);
 		printf("%x", digit);
 		sig_bits = 4; /* for all subsequent digits */
 	}

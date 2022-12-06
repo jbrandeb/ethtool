@@ -29,100 +29,100 @@
 
 #define	SFF8636_STATUS_2_OFFSET	0x02
 /* Flat Memory:0- Paging, 1- Page 0 only */
-#define	 SFF8636_STATUS_PAGE_3_PRESENT		(1 << 2)
-#define	 SFF8636_STATUS_INTL_OUTPUT		(1 << 1)
-#define	 SFF8636_STATUS_DATA_NOT_READY		(1 << 0)
+#define	 SFF8636_STATUS_PAGE_3_PRESENT		_BITUL(2)
+#define	 SFF8636_STATUS_INTL_OUTPUT		_BITUL(1)
+#define	 SFF8636_STATUS_DATA_NOT_READY		_BITUL(0)
 
 /* Channel Status Interrupt Flags - 3-5 */
 #define	SFF8636_LOS_AW_OFFSET	0x03
-#define	 SFF8636_TX4_LOS_AW		(1 << 7)
-#define	 SFF8636_TX3_LOS_AW		(1 << 6)
-#define	 SFF8636_TX2_LOS_AW		(1 << 5)
-#define	 SFF8636_TX1_LOS_AW		(1 << 4)
-#define	 SFF8636_RX4_LOS_AW		(1 << 3)
-#define	 SFF8636_RX3_LOS_AW		(1 << 2)
-#define	 SFF8636_RX2_LOS_AW		(1 << 1)
-#define	 SFF8636_RX1_LOS_AW		(1 << 0)
+#define	 SFF8636_TX4_LOS_AW		_BITUL(7)
+#define	 SFF8636_TX3_LOS_AW		_BITUL(6)
+#define	 SFF8636_TX2_LOS_AW		_BITUL(5)
+#define	 SFF8636_TX1_LOS_AW		_BITUL(4)
+#define	 SFF8636_RX4_LOS_AW		_BITUL(3)
+#define	 SFF8636_RX3_LOS_AW		_BITUL(2)
+#define	 SFF8636_RX2_LOS_AW		_BITUL(1)
+#define	 SFF8636_RX1_LOS_AW		_BITUL(0)
 
 #define	SFF8636_FAULT_AW_OFFSET	0x04
-#define	 SFF8636_TX4_FAULT_AW	(1 << 3)
-#define	 SFF8636_TX3_FAULT_AW	(1 << 2)
-#define	 SFF8636_TX2_FAULT_AW	(1 << 1)
-#define	 SFF8636_TX1_FAULT_AW	(1 << 0)
+#define	 SFF8636_TX4_FAULT_AW	_BITUL(3)
+#define	 SFF8636_TX3_FAULT_AW	_BITUL(2)
+#define	 SFF8636_TX2_FAULT_AW	_BITUL(1)
+#define	 SFF8636_TX1_FAULT_AW	_BITUL(0)
 
 /* Module Monitor Interrupt Flags - 6-8 */
 #define	SFF8636_TEMP_AW_OFFSET	0x06
-#define	 SFF8636_TEMP_HALARM_STATUS		(1 << 7)
-#define	 SFF8636_TEMP_LALARM_STATUS		(1 << 6)
-#define	 SFF8636_TEMP_HWARN_STATUS		(1 << 5)
-#define	 SFF8636_TEMP_LWARN_STATUS		(1 << 4)
+#define	 SFF8636_TEMP_HALARM_STATUS		_BITUL(7)
+#define	 SFF8636_TEMP_LALARM_STATUS		_BITUL(6)
+#define	 SFF8636_TEMP_HWARN_STATUS		_BITUL(5)
+#define	 SFF8636_TEMP_LWARN_STATUS		_BITUL(4)
 
 #define	SFF8636_VCC_AW_OFFSET	0x07
-#define	 SFF8636_VCC_HALARM_STATUS		(1 << 7)
-#define	 SFF8636_VCC_LALARM_STATUS		(1 << 6)
-#define	 SFF8636_VCC_HWARN_STATUS		(1 << 5)
-#define	 SFF8636_VCC_LWARN_STATUS		(1 << 4)
+#define	 SFF8636_VCC_HALARM_STATUS		_BITUL(7)
+#define	 SFF8636_VCC_LALARM_STATUS		_BITUL(6)
+#define	 SFF8636_VCC_HWARN_STATUS		_BITUL(5)
+#define	 SFF8636_VCC_LWARN_STATUS		_BITUL(4)
 
 /* Channel Monitor Interrupt Flags - 9-21 */
 #define	SFF8636_RX_PWR_12_AW_OFFSET	0x09
-#define	 SFF8636_RX_PWR_1_HALARM		(1 << 7)
-#define	 SFF8636_RX_PWR_1_LALARM		(1 << 6)
-#define	 SFF8636_RX_PWR_1_HWARN			(1 << 5)
-#define	 SFF8636_RX_PWR_1_LWARN			(1 << 4)
-#define	 SFF8636_RX_PWR_2_HALARM		(1 << 3)
-#define	 SFF8636_RX_PWR_2_LALARM		(1 << 2)
-#define	 SFF8636_RX_PWR_2_HWARN			(1 << 1)
-#define	 SFF8636_RX_PWR_2_LWARN			(1 << 0)
+#define	 SFF8636_RX_PWR_1_HALARM		_BITUL(7)
+#define	 SFF8636_RX_PWR_1_LALARM		_BITUL(6)
+#define	 SFF8636_RX_PWR_1_HWARN			_BITUL(5)
+#define	 SFF8636_RX_PWR_1_LWARN			_BITUL(4)
+#define	 SFF8636_RX_PWR_2_HALARM		_BITUL(3)
+#define	 SFF8636_RX_PWR_2_LALARM		_BITUL(2)
+#define	 SFF8636_RX_PWR_2_HWARN			_BITUL(1)
+#define	 SFF8636_RX_PWR_2_LWARN			_BITUL(0)
 
 #define	SFF8636_RX_PWR_34_AW_OFFSET	0x0A
-#define	 SFF8636_RX_PWR_3_HALARM		(1 << 7)
-#define	 SFF8636_RX_PWR_3_LALARM		(1 << 6)
-#define	 SFF8636_RX_PWR_3_HWARN			(1 << 5)
-#define	 SFF8636_RX_PWR_3_LWARN			(1 << 4)
-#define	 SFF8636_RX_PWR_4_HALARM		(1 << 3)
-#define	 SFF8636_RX_PWR_4_LALARM		(1 << 2)
-#define	 SFF8636_RX_PWR_4_HWARN			(1 << 1)
-#define	 SFF8636_RX_PWR_4_LWARN			(1 << 0)
+#define	 SFF8636_RX_PWR_3_HALARM		_BITUL(7)
+#define	 SFF8636_RX_PWR_3_LALARM		_BITUL(6)
+#define	 SFF8636_RX_PWR_3_HWARN			_BITUL(5)
+#define	 SFF8636_RX_PWR_3_LWARN			_BITUL(4)
+#define	 SFF8636_RX_PWR_4_HALARM		_BITUL(3)
+#define	 SFF8636_RX_PWR_4_LALARM		_BITUL(2)
+#define	 SFF8636_RX_PWR_4_HWARN			_BITUL(1)
+#define	 SFF8636_RX_PWR_4_LWARN			_BITUL(0)
 
 #define	SFF8636_TX_BIAS_12_AW_OFFSET	0x0B
-#define	 SFF8636_TX_BIAS_1_HALARM		(1 << 7)
-#define	 SFF8636_TX_BIAS_1_LALARM		(1 << 6)
-#define	 SFF8636_TX_BIAS_1_HWARN		(1 << 5)
-#define	 SFF8636_TX_BIAS_1_LWARN		(1 << 4)
-#define	 SFF8636_TX_BIAS_2_HALARM		(1 << 3)
-#define	 SFF8636_TX_BIAS_2_LALARM		(1 << 2)
-#define	 SFF8636_TX_BIAS_2_HWARN		(1 << 1)
-#define	 SFF8636_TX_BIAS_2_LWARN		(1 << 0)
+#define	 SFF8636_TX_BIAS_1_HALARM		_BITUL(7)
+#define	 SFF8636_TX_BIAS_1_LALARM		_BITUL(6)
+#define	 SFF8636_TX_BIAS_1_HWARN		_BITUL(5)
+#define	 SFF8636_TX_BIAS_1_LWARN		_BITUL(4)
+#define	 SFF8636_TX_BIAS_2_HALARM		_BITUL(3)
+#define	 SFF8636_TX_BIAS_2_LALARM		_BITUL(2)
+#define	 SFF8636_TX_BIAS_2_HWARN		_BITUL(1)
+#define	 SFF8636_TX_BIAS_2_LWARN		_BITUL(0)
 
 #define	SFF8636_TX_BIAS_34_AW_OFFSET	0xC
-#define	 SFF8636_TX_BIAS_3_HALARM		(1 << 7)
-#define	 SFF8636_TX_BIAS_3_LALARM		(1 << 6)
-#define	 SFF8636_TX_BIAS_3_HWARN		(1 << 5)
-#define	 SFF8636_TX_BIAS_3_LWARN		(1 << 4)
-#define	 SFF8636_TX_BIAS_4_HALARM		(1 << 3)
-#define	 SFF8636_TX_BIAS_4_LALARM		(1 << 2)
-#define	 SFF8636_TX_BIAS_4_HWARN		(1 << 1)
-#define	 SFF8636_TX_BIAS_4_LWARN		(1 << 0)
+#define	 SFF8636_TX_BIAS_3_HALARM		_BITUL(7)
+#define	 SFF8636_TX_BIAS_3_LALARM		_BITUL(6)
+#define	 SFF8636_TX_BIAS_3_HWARN		_BITUL(5)
+#define	 SFF8636_TX_BIAS_3_LWARN		_BITUL(4)
+#define	 SFF8636_TX_BIAS_4_HALARM		_BITUL(3)
+#define	 SFF8636_TX_BIAS_4_LALARM		_BITUL(2)
+#define	 SFF8636_TX_BIAS_4_HWARN		_BITUL(1)
+#define	 SFF8636_TX_BIAS_4_LWARN		_BITUL(0)
 
 #define	SFF8636_TX_PWR_12_AW_OFFSET	0x0D
-#define	 SFF8636_TX_PWR_1_HALARM		(1 << 7)
-#define	 SFF8636_TX_PWR_1_LALARM		(1 << 6)
-#define	 SFF8636_TX_PWR_1_HWARN			(1 << 5)
-#define	 SFF8636_TX_PWR_1_LWARN			(1 << 4)
-#define	 SFF8636_TX_PWR_2_HALARM		(1 << 3)
-#define	 SFF8636_TX_PWR_2_LALARM		(1 << 2)
-#define	 SFF8636_TX_PWR_2_HWARN			(1 << 1)
-#define	 SFF8636_TX_PWR_2_LWARN			(1 << 0)
+#define	 SFF8636_TX_PWR_1_HALARM		_BITUL(7)
+#define	 SFF8636_TX_PWR_1_LALARM		_BITUL(6)
+#define	 SFF8636_TX_PWR_1_HWARN			_BITUL(5)
+#define	 SFF8636_TX_PWR_1_LWARN			_BITUL(4)
+#define	 SFF8636_TX_PWR_2_HALARM		_BITUL(3)
+#define	 SFF8636_TX_PWR_2_LALARM		_BITUL(2)
+#define	 SFF8636_TX_PWR_2_HWARN			_BITUL(1)
+#define	 SFF8636_TX_PWR_2_LWARN			_BITUL(0)
 
 #define	SFF8636_TX_PWR_34_AW_OFFSET	0x0E
-#define	 SFF8636_TX_PWR_3_HALARM		(1 << 7)
-#define	 SFF8636_TX_PWR_3_LALARM		(1 << 6)
-#define	 SFF8636_TX_PWR_3_HWARN			(1 << 5)
-#define	 SFF8636_TX_PWR_3_LWARN			(1 << 4)
-#define	 SFF8636_TX_PWR_4_HALARM		(1 << 3)
-#define	 SFF8636_TX_PWR_4_LALARM		(1 << 2)
-#define	 SFF8636_TX_PWR_4_HWARN			(1 << 1)
-#define	 SFF8636_TX_PWR_4_LWARN			(1 << 0)
+#define	 SFF8636_TX_PWR_3_HALARM		_BITUL(7)
+#define	 SFF8636_TX_PWR_3_LALARM		_BITUL(6)
+#define	 SFF8636_TX_PWR_3_HWARN			_BITUL(5)
+#define	 SFF8636_TX_PWR_3_LWARN			_BITUL(4)
+#define	 SFF8636_TX_PWR_4_HALARM		_BITUL(3)
+#define	 SFF8636_TX_PWR_4_LALARM		_BITUL(2)
+#define	 SFF8636_TX_PWR_4_HWARN			_BITUL(1)
+#define	 SFF8636_TX_PWR_4_LWARN			_BITUL(0)
 
 /* Module Monitoring Values - 22-33 */
 #define	SFF8636_TEMP_CURR		0x16
@@ -151,10 +151,10 @@
 
 /* Control Bytes - 86 - 99 */
 #define	SFF8636_TX_DISABLE_OFFSET	0x56
-#define	 SFF8636_TX_DISABLE_4			(1 << 3)
-#define	 SFF8636_TX_DISABLE_3			(1 << 2)
-#define	 SFF8636_TX_DISABLE_2			(1 << 1)
-#define	 SFF8636_TX_DISABLE_1			(1 << 0)
+#define	 SFF8636_TX_DISABLE_4			_BITUL(3)
+#define	 SFF8636_TX_DISABLE_3			_BITUL(2)
+#define	 SFF8636_TX_DISABLE_2			_BITUL(1)
+#define	 SFF8636_TX_DISABLE_1			_BITUL(0)
 
 #define	SFF8636_RX_RATE_SELECT_OFFSET	0x57
 #define	 SFF8636_RX_RATE_SELECT_4_MASK		(3 << 6)
@@ -174,9 +174,9 @@
 #define	SFF8636_RX_APP_SELECT_1_OFFSET	0x5B
 
 #define	SFF8636_PWR_MODE_OFFSET		0x5D
-#define	 SFF8636_HIGH_PWR_ENABLE		(1 << 2)
-#define	 SFF8636_LOW_PWR_SET			(1 << 1)
-#define	 SFF8636_PWR_OVERRIDE			(1 << 0)
+#define	 SFF8636_HIGH_PWR_ENABLE		_BITUL(2)
+#define	 SFF8636_LOW_PWR_SET			_BITUL(1)
+#define	 SFF8636_PWR_OVERRIDE			_BITUL(0)
 
 #define	SFF8636_TX_APP_SELECT_4_OFFSET	0x5E
 #define	SFF8636_TX_APP_SELECT_3_OFFSET	0x5F
@@ -184,32 +184,32 @@
 #define	SFF8636_TX_APP_SELECT_1_OFFSET	0x61
 
 #define	SFF8636_LOS_MASK_OFFSET		0x64
-#define	 SFF8636_TX_LOS_4_MASK			(1 << 7)
-#define	 SFF8636_TX_LOS_3_MASK			(1 << 6)
-#define	 SFF8636_TX_LOS_2_MASK			(1 << 5)
-#define	 SFF8636_TX_LOS_1_MASK			(1 << 4)
-#define	 SFF8636_RX_LOS_4_MASK			(1 << 3)
-#define	 SFF8636_RX_LOS_3_MASK			(1 << 2)
-#define	 SFF8636_RX_LOS_2_MASK			(1 << 1)
-#define	 SFF8636_RX_LOS_1_MASK			(1 << 0)
+#define	 SFF8636_TX_LOS_4_MASK			_BITUL(7)
+#define	 SFF8636_TX_LOS_3_MASK			_BITUL(6)
+#define	 SFF8636_TX_LOS_2_MASK			_BITUL(5)
+#define	 SFF8636_TX_LOS_1_MASK			_BITUL(4)
+#define	 SFF8636_RX_LOS_4_MASK			_BITUL(3)
+#define	 SFF8636_RX_LOS_3_MASK			_BITUL(2)
+#define	 SFF8636_RX_LOS_2_MASK			_BITUL(1)
+#define	 SFF8636_RX_LOS_1_MASK			_BITUL(0)
 
 #define	SFF8636_FAULT_MASK_OFFSET	0x65
-#define	 SFF8636_TX_FAULT_1_MASK		(1 << 3)
-#define	 SFF8636_TX_FAULT_2_MASK		(1 << 2)
-#define	 SFF8636_TX_FAULT_3_MASK		(1 << 1)
-#define	 SFF8636_TX_FAULT_4_MASK		(1 << 0)
+#define	 SFF8636_TX_FAULT_1_MASK		_BITUL(3)
+#define	 SFF8636_TX_FAULT_2_MASK		_BITUL(2)
+#define	 SFF8636_TX_FAULT_3_MASK		_BITUL(1)
+#define	 SFF8636_TX_FAULT_4_MASK		_BITUL(0)
 
 #define	SFF8636_TEMP_MASK_OFFSET	0x67
-#define	 SFF8636_TEMP_HALARM_MASK		(1 << 7)
-#define	 SFF8636_TEMP_LALARM_MASK		(1 << 6)
-#define	 SFF8636_TEMP_HWARN_MASK		(1 << 5)
-#define	 SFF8636_TEMP_LWARN_MASK		(1 << 4)
+#define	 SFF8636_TEMP_HALARM_MASK		_BITUL(7)
+#define	 SFF8636_TEMP_LALARM_MASK		_BITUL(6)
+#define	 SFF8636_TEMP_HWARN_MASK		_BITUL(5)
+#define	 SFF8636_TEMP_LWARN_MASK		_BITUL(4)
 
 #define	SFF8636_VCC_MASK_OFFSET		0x68
-#define	 SFF8636_VCC_HALARM_MASK		(1 << 7)
-#define	 SFF8636_VCC_LALARM_MASK		(1 << 6)
-#define	 SFF8636_VCC_HWARN_MASK			(1 << 5)
-#define	 SFF8636_VCC_LWARN_MASK			(1 << 4)
+#define	 SFF8636_VCC_HALARM_MASK		_BITUL(7)
+#define	 SFF8636_VCC_LALARM_MASK		_BITUL(6)
+#define	 SFF8636_VCC_HWARN_MASK			_BITUL(5)
+#define	 SFF8636_VCC_LWARN_MASK			_BITUL(4)
 
 /*------------------------------------------------------------------------------
  *
@@ -225,15 +225,15 @@
 #define SFF8636_EXT_ID_OFFSET		0x81
 #define	 SFF8636_EXT_ID_PWR_CLASS_MASK		0xC0
 #define	  SFF8636_EXT_ID_PWR_CLASS_1		(0 << 6)
-#define	  SFF8636_EXT_ID_PWR_CLASS_2		(1 << 6)
+#define	  SFF8636_EXT_ID_PWR_CLASS_2		_BITUL(6)
 #define	  SFF8636_EXT_ID_PWR_CLASS_3		(2 << 6)
 #define	  SFF8636_EXT_ID_PWR_CLASS_4		(3 << 6)
 #define	 SFF8636_EXT_ID_CLIE_MASK		0x10
-#define	  SFF8636_EXT_ID_CLIEI_CODE_PRESENT	(1 << 4)
+#define	  SFF8636_EXT_ID_CLIEI_CODE_PRESENT	_BITUL(4)
 #define	 SFF8636_EXT_ID_CDR_TX_MASK		0x08
-#define	  SFF8636_EXT_ID_CDR_TX_PRESENT		(1 << 3)
+#define	  SFF8636_EXT_ID_CDR_TX_PRESENT		_BITUL(3)
 #define	 SFF8636_EXT_ID_CDR_RX_MASK		0x04
-#define	  SFF8636_EXT_ID_CDR_RX_PRESENT		(1 << 2)
+#define	  SFF8636_EXT_ID_CDR_RX_PRESENT		_BITUL(2)
 #define	 SFF8636_EXT_ID_EPWR_CLASS_MASK		0x03
 #define	  SFF8636_EXT_ID_PWR_CLASS_LEGACY	0
 #define	  SFF8636_EXT_ID_PWR_CLASS_5		1
@@ -266,78 +266,78 @@
 /* Specification Compliance - 131-138 */
 /* Ethernet Compliance Codes - 131 */
 #define	SFF8636_ETHERNET_COMP_OFFSET	0x83
-#define	 SFF8636_ETHERNET_RSRVD			(1 << 7)
-#define	 SFF8636_ETHERNET_10G_LRM		(1 << 6)
-#define	 SFF8636_ETHERNET_10G_LR		(1 << 5)
-#define	 SFF8636_ETHERNET_10G_SR		(1 << 4)
-#define	 SFF8636_ETHERNET_40G_CR4		(1 << 3)
-#define	 SFF8636_ETHERNET_40G_SR4		(1 << 2)
-#define	 SFF8636_ETHERNET_40G_LR4		(1 << 1)
-#define	 SFF8636_ETHERNET_40G_ACTIVE	(1 << 0)
+#define	 SFF8636_ETHERNET_RSRVD			_BITUL(7)
+#define	 SFF8636_ETHERNET_10G_LRM		_BITUL(6)
+#define	 SFF8636_ETHERNET_10G_LR		_BITUL(5)
+#define	 SFF8636_ETHERNET_10G_SR		_BITUL(4)
+#define	 SFF8636_ETHERNET_40G_CR4		_BITUL(3)
+#define	 SFF8636_ETHERNET_40G_SR4		_BITUL(2)
+#define	 SFF8636_ETHERNET_40G_LR4		_BITUL(1)
+#define	 SFF8636_ETHERNET_40G_ACTIVE	_BITUL(0)
 
 /* SONET Compliance Codes - 132 */
 #define	SFF8636_SONET_COMP_OFFSET	0x84
-#define	 SFF8636_SONET_40G_OTN			(1 << 3)
-#define	 SFF8636_SONET_OC48_LR			(1 << 2)
-#define	 SFF8636_SONET_OC48_IR			(1 << 1)
-#define	 SFF8636_SONET_OC48_SR			(1 << 0)
+#define	 SFF8636_SONET_40G_OTN			_BITUL(3)
+#define	 SFF8636_SONET_OC48_LR			_BITUL(2)
+#define	 SFF8636_SONET_OC48_IR			_BITUL(1)
+#define	 SFF8636_SONET_OC48_SR			_BITUL(0)
 
 /* SAS/SATA Complaince Codes - 133 */
 #define	SFF8636_SAS_COMP_OFFSET		0x85
-#define	 SFF8636_SAS_12G			(1 << 6)
-#define	 SFF8636_SAS_6G				(1 << 5)
-#define	 SFF8636_SAS_3G				(1 << 4)
+#define	 SFF8636_SAS_12G			_BITUL(6)
+#define	 SFF8636_SAS_6G				_BITUL(5)
+#define	 SFF8636_SAS_3G				_BITUL(4)
 
 /* Gigabit Ethernet Compliance Codes - 134 */
 #define	SFF8636_GIGE_COMP_OFFSET	0x86
-#define	 SFF8636_GIGE_1000_BASE_T		(1 << 3)
-#define	 SFF8636_GIGE_1000_BASE_CX		(1 << 2)
-#define	 SFF8636_GIGE_1000_BASE_LX		(1 << 1)
-#define	 SFF8636_GIGE_1000_BASE_SX		(1 << 0)
+#define	 SFF8636_GIGE_1000_BASE_T		_BITUL(3)
+#define	 SFF8636_GIGE_1000_BASE_CX		_BITUL(2)
+#define	 SFF8636_GIGE_1000_BASE_LX		_BITUL(1)
+#define	 SFF8636_GIGE_1000_BASE_SX		_BITUL(0)
 
 /* Fibre Channel Link length/Transmitter Tech. - 135,136 */
 #define	SFF8636_FC_LEN_OFFSET		0x87
-#define	 SFF8636_FC_LEN_VERY_LONG		(1 << 7)
-#define	 SFF8636_FC_LEN_SHORT			(1 << 6)
-#define	 SFF8636_FC_LEN_INT			(1 << 5)
-#define	 SFF8636_FC_LEN_LONG			(1 << 4)
-#define	 SFF8636_FC_LEN_MED			(1 << 3)
-#define	 SFF8636_FC_TECH_LONG_LC		(1 << 1)
-#define	 SFF8636_FC_TECH_ELEC_INTER		(1 << 0)
+#define	 SFF8636_FC_LEN_VERY_LONG		_BITUL(7)
+#define	 SFF8636_FC_LEN_SHORT			_BITUL(6)
+#define	 SFF8636_FC_LEN_INT			_BITUL(5)
+#define	 SFF8636_FC_LEN_LONG			_BITUL(4)
+#define	 SFF8636_FC_LEN_MED			_BITUL(3)
+#define	 SFF8636_FC_TECH_LONG_LC		_BITUL(1)
+#define	 SFF8636_FC_TECH_ELEC_INTER		_BITUL(0)
 
 #define	SFF8636_FC_TECH_OFFSET		0x88
-#define	 SFF8636_FC_TECH_ELEC_INTRA		(1 << 7)
-#define	 SFF8636_FC_TECH_SHORT_WO_OFC		(1 << 6)
-#define	 SFF8636_FC_TECH_SHORT_W_OFC		(1 << 5)
-#define	 SFF8636_FC_TECH_LONG_LL		(1 << 4)
+#define	 SFF8636_FC_TECH_ELEC_INTRA		_BITUL(7)
+#define	 SFF8636_FC_TECH_SHORT_WO_OFC		_BITUL(6)
+#define	 SFF8636_FC_TECH_SHORT_W_OFC		_BITUL(5)
+#define	 SFF8636_FC_TECH_LONG_LL		_BITUL(4)
 
 /* Fibre Channel Transmitter Media - 137 */
 #define	SFF8636_FC_TRANS_MEDIA_OFFSET	0x89
 /* Twin Axial Pair */
-#define	 SFF8636_FC_TRANS_MEDIA_TW		(1 << 7)
+#define	 SFF8636_FC_TRANS_MEDIA_TW		_BITUL(7)
 /* Shielded Twisted Pair */
-#define	 SFF8636_FC_TRANS_MEDIA_TP		(1 << 6)
+#define	 SFF8636_FC_TRANS_MEDIA_TP		_BITUL(6)
 /* Miniature Coax */
-#define	 SFF8636_FC_TRANS_MEDIA_MI		(1 << 5)
+#define	 SFF8636_FC_TRANS_MEDIA_MI		_BITUL(5)
 /* Video Coax */
-#define	 SFF8636_FC_TRANS_MEDIA_TV		(1 << 4)
+#define	 SFF8636_FC_TRANS_MEDIA_TV		_BITUL(4)
 /* Multi-mode 62.5m */
-#define	 SFF8636_FC_TRANS_MEDIA_M6		(1 << 3)
+#define	 SFF8636_FC_TRANS_MEDIA_M6		_BITUL(3)
 /* Multi-mode 50m */
-#define	 SFF8636_FC_TRANS_MEDIA_M5		(1 << 2)
+#define	 SFF8636_FC_TRANS_MEDIA_M5		_BITUL(2)
 /* Multi-mode 50um */
-#define	 SFF8636_FC_TRANS_MEDIA_OM3		(1 << 1)
+#define	 SFF8636_FC_TRANS_MEDIA_OM3		_BITUL(1)
 /* Single Mode */
-#define	 SFF8636_FC_TRANS_MEDIA_SM		(1 << 0)
+#define	 SFF8636_FC_TRANS_MEDIA_SM		_BITUL(0)
 
 /* Fibre Channel Speed - 138 */
 #define	SFF8636_FC_SPEED_OFFSET		0x8A
-#define	 SFF8636_FC_SPEED_1200_MBPS		(1 << 7)
-#define	 SFF8636_FC_SPEED_800_MBPS		(1 << 6)
-#define	 SFF8636_FC_SPEED_1600_MBPS		(1 << 5)
-#define	 SFF8636_FC_SPEED_400_MBPS		(1 << 4)
-#define	 SFF8636_FC_SPEED_200_MBPS		(1 << 2)
-#define	 SFF8636_FC_SPEED_100_MBPS		(1 << 0)
+#define	 SFF8636_FC_SPEED_1200_MBPS		_BITUL(7)
+#define	 SFF8636_FC_SPEED_800_MBPS		_BITUL(6)
+#define	 SFF8636_FC_SPEED_1600_MBPS		_BITUL(5)
+#define	 SFF8636_FC_SPEED_400_MBPS		_BITUL(4)
+#define	 SFF8636_FC_SPEED_200_MBPS		_BITUL(2)
+#define	 SFF8636_FC_SPEED_100_MBPS		_BITUL(0)
 
 /* Encoding - 139 */
 /* Values are defined under SFF8024_ENCODING */
@@ -355,7 +355,7 @@
 
 /* Extended RateSelect - 141 */
 #define	SFF8636_EXT_RS_OFFSET		0x8D
-#define	 SFF8636_EXT_RS_V1			(1 << 0)
+#define	 SFF8636_EXT_RS_V1			_BITUL(0)
 
 /* Length (Standard SM Fiber)-km - 142 */
 #define	SFF8636_SM_LEN_OFFSET		0x8E
@@ -405,18 +405,18 @@
 /* 1550 nm VCSEL */
 #define	 SFF8636_TRANS_1550_VCSEL		(2 << 4)
 /* 1310 nm VCSEL */
-#define	 SFF8636_TRANS_1310_VCSEL		(1 << 4)
+#define	 SFF8636_TRANS_1310_VCSEL		_BITUL(4)
 /* 850 nm VCSEL */
 #define	 SFF8636_TRANS_850_VCSEL		(0 << 4)
 
  /* Active/No wavelength control */
-#define	 SFF8636_DEV_TECH_ACTIVE_WAVE_LEN	(1 << 3)
+#define	 SFF8636_DEV_TECH_ACTIVE_WAVE_LEN	_BITUL(3)
 /* Cooled transmitter */
-#define	 SFF8636_DEV_TECH_COOL_TRANS		(1 << 2)
+#define	 SFF8636_DEV_TECH_COOL_TRANS		_BITUL(2)
 /* APD/Pin Detector */
-#define	 SFF8636_DEV_TECH_APD_DETECTOR		(1 << 1)
+#define	 SFF8636_DEV_TECH_APD_DETECTOR		_BITUL(1)
 /* Transmitter tunable */
-#define	 SFF8636_DEV_TECH_TUNABLE		(1 << 0)
+#define	 SFF8636_DEV_TECH_TUNABLE		_BITUL(0)
 
 /* Vendor Name - 148-163 */
 #define	 SFF8636_VENDOR_NAME_START_OFFSET	0x94
@@ -424,11 +424,11 @@
 
 /* Extended Module Codes - 164 */
 #define	 SFF8636_EXT_MOD_CODE_OFFSET	0xA4
-#define	  SFF8636_EXT_MOD_INFINIBAND_EDR	(1 << 4)
-#define	  SFF8636_EXT_MOD_INFINIBAND_FDR	(1 << 3)
-#define	  SFF8636_EXT_MOD_INFINIBAND_QDR	(1 << 2)
-#define	  SFF8636_EXT_MOD_INFINIBAND_DDR	(1 << 1)
-#define	  SFF8636_EXT_MOD_INFINIBAND_SDR	(1 << 0)
+#define	  SFF8636_EXT_MOD_INFINIBAND_EDR	_BITUL(4)
+#define	  SFF8636_EXT_MOD_INFINIBAND_FDR	_BITUL(3)
+#define	  SFF8636_EXT_MOD_INFINIBAND_QDR	_BITUL(2)
+#define	  SFF8636_EXT_MOD_INFINIBAND_DDR	_BITUL(1)
+#define	  SFF8636_EXT_MOD_INFINIBAND_SDR	_BITUL(0)
 
 /* Vendor OUI - 165-167 */
 #define	 SFF8636_VENDOR_OUI_OFFSET		0xA5
@@ -521,31 +521,31 @@
 
 #define	 SFF8636_OPTION_2_OFFSET	0xC1
 /* Rx output amplitude */
-#define	  SFF8636_O2_RX_OUTPUT_AMP	(1 << 0)
+#define	  SFF8636_O2_RX_OUTPUT_AMP	_BITUL(0)
 #define	 SFF8636_OPTION_3_OFFSET	0xC2
 /* Rx Squelch Disable */
-#define	  SFF8636_O3_RX_SQL_DSBL	(1 << 3)
+#define	  SFF8636_O3_RX_SQL_DSBL	_BITUL(3)
 /* Rx Output Disable capable */
-#define	  SFF8636_O3_RX_OUTPUT_DSBL	(1 << 2)
+#define	  SFF8636_O3_RX_OUTPUT_DSBL	_BITUL(2)
 /* Tx Squelch Disable */
-#define	  SFF8636_O3_TX_SQL_DSBL	(1 << 1)
+#define	  SFF8636_O3_TX_SQL_DSBL	_BITUL(1)
 /* Tx Squelch Impl */
-#define	  SFF8636_O3_TX_SQL_IMPL	(1 << 0)
+#define	  SFF8636_O3_TX_SQL_IMPL	_BITUL(0)
 #define	 SFF8636_OPTION_4_OFFSET	0xC3
 /* Memory Page 02 present */
-#define	  SFF8636_O4_PAGE_02_PRESENT	(1 << 7)
+#define	  SFF8636_O4_PAGE_02_PRESENT	_BITUL(7)
 /* Memory Page 01 present */
-#define	  SFF8636_O4_PAGE_01_PRESENT	(1 << 6)
+#define	  SFF8636_O4_PAGE_01_PRESENT	_BITUL(6)
 /* Rate Select implemented */
-#define	  SFF8636_O4_RATE_SELECT	(1 << 5)
+#define	  SFF8636_O4_RATE_SELECT	_BITUL(5)
 /* Tx_DISABLE implemented */
-#define	  SFF8636_O4_TX_DISABLE		(1 << 4)
+#define	  SFF8636_O4_TX_DISABLE		_BITUL(4)
 /* Tx_FAULT implemented */
-#define	  SFF8636_O4_TX_FAULT		(1 << 3)
+#define	  SFF8636_O4_TX_FAULT		_BITUL(3)
 /* Tx Squelch implemented */
-#define	  SFF8636_O4_TX_SQUELCH		(1 << 2)
+#define	  SFF8636_O4_TX_SQUELCH		_BITUL(2)
 /* Tx Loss of Signal */
-#define	  SFF8636_O4_TX_LOS		(1 << 1)
+#define	  SFF8636_O4_TX_LOS		_BITUL(1)
 
 /* Vendor SN - 196-211 */
 #define	 SFF8636_VENDOR_SN_START_OFFSET	0xC4
@@ -564,15 +564,15 @@
 /* Diagnostic Monitoring Type - 220 */
 #define	 SFF8636_DIAG_TYPE_OFFSET	0xDC
 #define	  SFF8636_RX_PWR_TYPE_MASK	0x8
-#define	   SFF8636_RX_PWR_TYPE_AVG_PWR	(1 << 3)
+#define	   SFF8636_RX_PWR_TYPE_AVG_PWR	_BITUL(3)
 #define	   SFF8636_RX_PWR_TYPE_OMA	(0 << 3)
 #define	  SFF8636_TX_PWR_TYPE_MASK	0x4
-#define	   SFF8636_TX_PWR_TYPE_AVG_PWR	(1 << 2)
+#define	   SFF8636_TX_PWR_TYPE_AVG_PWR	_BITUL(2)
 
 /* Enhanced Options - 221 */
 #define	 SFF8636_ENH_OPTIONS_OFFSET	0xDD
-#define	  SFF8636_RATE_SELECT_EXT_SUPPORT	(1 << 3)
-#define	  SFF8636_RATE_SELECT_APP_TABLE_SUPPORT	(1 << 2)
+#define	  SFF8636_RATE_SELECT_EXT_SUPPORT	_BITUL(3)
+#define	  SFF8636_RATE_SELECT_APP_TABLE_SUPPORT	_BITUL(2)
 
 /* Check code - 223 */
 #define	 SFF8636_CC_EXT_OFFSET		0xDF

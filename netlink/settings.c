@@ -275,7 +275,7 @@ int dump_link_modes(struct nl_context *nlctx, const struct nlattr *bitset,
 			const uint32_t *raw_data = mnl_attr_get_payload(bits);
 			char buff[14];
 
-			if (!(raw_data[idx / 32] & (1U << (idx % 32))))
+			if (!(raw_data[idx / 32] & _BITUL(idx % 32)))
 				continue;
 			if (!lm_class_match(idx, class))
 				continue;
@@ -782,9 +782,9 @@ void wol_modes_cb(unsigned int idx, const char *name __maybe_unused, bool val,
 
 	if (idx >= 32)
 		return;
-	wol->supported |= (1U << idx);
+	wol->supported |= _BITUL(idx);
 	if (val)
-		wol->wolopts |= (1U << idx);
+		wol->wolopts |= _BITUL(idx);
 }
 
 int wol_reply_cb(const struct nlmsghdr *nlhdr, void *data)
@@ -832,7 +832,7 @@ void msgmask_cb(unsigned int idx, const char *name __maybe_unused, bool val,
 	if (idx >= 32)
 		return;
 	if (val)
-		*msg_mask |= (1U << idx);
+		*msg_mask |= _BITUL(idx);
 }
 
 void msgmask_cb2(unsigned int idx __maybe_unused, const char *name,
@@ -1172,7 +1172,7 @@ static int linkmodes_reply_advert_all_cb(const struct nlmsghdr *nlhdr,
 	/* keep only "real" link modes */
 	for (i = 0; i < modes_count; i++)
 		if (!lm_class_match(i, LM_CLASS_REAL))
-			supported_modes[i / 32] &= ~((uint32_t)1 << (i % 32));
+			supported_modes[i / 32] &= ~_BITUL(i % 32);
 
 	req_bitset = ethnla_nest_start(req_msgbuff, ETHTOOL_A_LINKMODES_OURS);
 	if (!req_bitset)

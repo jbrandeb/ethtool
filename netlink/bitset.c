@@ -75,7 +75,7 @@ bool bitset_get_bit(const struct nlattr *bitset, bool mask, unsigned int idx,
 
 		if (idx >= 8 * mnl_attr_get_payload_len(bits))
 			return false;
-		return bitmap[idx / 32] & (1U << (idx % 32));
+		return bitmap[idx / 32] & _BITUL(idx % 32);
 	}
 
 	bits = bitset_tb[ETHTOOL_A_BITSET_BITS];
@@ -227,9 +227,9 @@ int walk_bitset(const struct nlattr *bitset, const struct stringset *labels,
 		val_bm = mnl_attr_get_payload(bits);
 		mask_bm = mask ? mnl_attr_get_payload(mask) : NULL;
 		for (idx = 0; idx < count; idx++)
-			if (!mask_bm || (mask_bm[idx / 32] & (1 << (idx % 32))))
+			if (!mask_bm || (mask_bm[idx / 32] & _BITUL(idx % 32)))
 				cb(idx, get_string(labels, idx),
-				   val_bm[idx / 32] & (1 << (idx % 32)), data);
+				   val_bm[idx / 32] & _BITUL(idx % 32), data);
 		return 0;
 	}
 

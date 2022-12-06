@@ -22,12 +22,12 @@
 #define SFF_A0_COMP                       94
 
 /* EEPROM bit values for various registers */
-#define SFF_A0_DOM_EXTCAL                 (1 << 4)
-#define SFF_A0_DOM_INTCAL                 (1 << 5)
-#define SFF_A0_DOM_IMPL                   (1 << 6)
-#define SFF_A0_DOM_PWRT                   (1 << 3)
+#define SFF_A0_DOM_EXTCAL                 _BITUL(4)
+#define SFF_A0_DOM_INTCAL                 _BITUL(5)
+#define SFF_A0_DOM_IMPL                   _BITUL(6)
+#define SFF_A0_DOM_PWRT                   _BITUL(3)
 
-#define SFF_A0_OPTIONS_AW                 (1 << 7)
+#define SFF_A0_OPTIONS_AW                 _BITUL(7)
 
 /*
  * See ethtool.c comments about SFF-8472, this is the offset
@@ -92,30 +92,30 @@ static struct sff8472_aw_flags {
 	int offset;             /* A2-relative address offset */
 	__u8 value;             /* Alarm is on if (offset & value) != 0. */
 } sff8472_aw_flags[] = {
-	{ "Laser bias current high alarm",   SFF_A2_ALRM_FLG, (1 << 3) },
-	{ "Laser bias current low alarm",    SFF_A2_ALRM_FLG, (1 << 2) },
-	{ "Laser bias current high warning", SFF_A2_WARN_FLG, (1 << 3) },
-	{ "Laser bias current low warning",  SFF_A2_WARN_FLG, (1 << 2) },
+	{ "Laser bias current high alarm",   SFF_A2_ALRM_FLG, _BITUL(3) },
+	{ "Laser bias current low alarm",    SFF_A2_ALRM_FLG, _BITUL(2) },
+	{ "Laser bias current high warning", SFF_A2_WARN_FLG, _BITUL(3) },
+	{ "Laser bias current low warning",  SFF_A2_WARN_FLG, _BITUL(2) },
 
-	{ "Laser output power high alarm",   SFF_A2_ALRM_FLG, (1 << 1) },
-	{ "Laser output power low alarm",    SFF_A2_ALRM_FLG, (1 << 0) },
-	{ "Laser output power high warning", SFF_A2_WARN_FLG, (1 << 1) },
-	{ "Laser output power low warning",  SFF_A2_WARN_FLG, (1 << 0) },
+	{ "Laser output power high alarm",   SFF_A2_ALRM_FLG, _BITUL(1) },
+	{ "Laser output power low alarm",    SFF_A2_ALRM_FLG, _BITUL(0) },
+	{ "Laser output power high warning", SFF_A2_WARN_FLG, _BITUL(1) },
+	{ "Laser output power low warning",  SFF_A2_WARN_FLG, _BITUL(0) },
 
-	{ "Module temperature high alarm",   SFF_A2_ALRM_FLG, (1 << 7) },
-	{ "Module temperature low alarm",    SFF_A2_ALRM_FLG, (1 << 6) },
-	{ "Module temperature high warning", SFF_A2_WARN_FLG, (1 << 7) },
-	{ "Module temperature low warning",  SFF_A2_WARN_FLG, (1 << 6) },
+	{ "Module temperature high alarm",   SFF_A2_ALRM_FLG, _BITUL(7) },
+	{ "Module temperature low alarm",    SFF_A2_ALRM_FLG, _BITUL(6) },
+	{ "Module temperature high warning", SFF_A2_WARN_FLG, _BITUL(7) },
+	{ "Module temperature low warning",  SFF_A2_WARN_FLG, _BITUL(6) },
 
-	{ "Module voltage high alarm",   SFF_A2_ALRM_FLG, (1 << 5) },
-	{ "Module voltage low alarm",    SFF_A2_ALRM_FLG, (1 << 4) },
-	{ "Module voltage high warning", SFF_A2_WARN_FLG, (1 << 5) },
-	{ "Module voltage low warning",  SFF_A2_WARN_FLG, (1 << 4) },
+	{ "Module voltage high alarm",   SFF_A2_ALRM_FLG, _BITUL(5) },
+	{ "Module voltage low alarm",    SFF_A2_ALRM_FLG, _BITUL(4) },
+	{ "Module voltage high warning", SFF_A2_WARN_FLG, _BITUL(5) },
+	{ "Module voltage low warning",  SFF_A2_WARN_FLG, _BITUL(4) },
 
-	{ "Laser rx power high alarm",   SFF_A2_ALRM_FLG + 1, (1 << 7) },
-	{ "Laser rx power low alarm",    SFF_A2_ALRM_FLG + 1, (1 << 6) },
-	{ "Laser rx power high warning", SFF_A2_WARN_FLG + 1, (1 << 7) },
-	{ "Laser rx power low warning",  SFF_A2_WARN_FLG + 1, (1 << 6) },
+	{ "Laser rx power high alarm",   SFF_A2_ALRM_FLG + 1, _BITUL(7) },
+	{ "Laser rx power low alarm",    SFF_A2_ALRM_FLG + 1, _BITUL(6) },
+	{ "Laser rx power high warning", SFF_A2_WARN_FLG + 1, _BITUL(7) },
+	{ "Laser rx power low warning",  SFF_A2_WARN_FLG + 1, _BITUL(6) },
 
 	{ NULL, 0, 0 },
 };

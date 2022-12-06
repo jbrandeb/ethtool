@@ -910,12 +910,12 @@ static const struct param_parser *find_parser(const struct param_parser *params,
 
 static bool __parser_bit(const uint64_t *map, unsigned int idx)
 {
-	return map[idx / 64] & (1 << (idx % 64));
+	return map[idx / 64] & _BITUL(idx % 64);
 }
 
 static void __parser_set(uint64_t *map, unsigned int idx)
 {
-	map[idx / 64] |= (1 << (idx % 64));
+	map[idx / 64] |= _BITUL(idx % 64);
 }
 
 static void __parser_set_group(const struct param_parser *params,

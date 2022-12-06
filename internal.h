@@ -97,17 +97,17 @@ static inline u64 cpu_to_be64(u64 value)
 
 static inline void set_bit(unsigned int nr, unsigned long *addr)
 {
-	addr[nr / BITS_PER_LONG] |= 1UL << (nr % BITS_PER_LONG);
+	addr[nr / BITS_PER_LONG] |= _BITULL(nr % BITS_PER_LONG);
 }
 
 static inline void clear_bit(unsigned int nr, unsigned long *addr)
 {
-	addr[nr / BITS_PER_LONG] &= ~(1UL << (nr % BITS_PER_LONG));
+	addr[nr / BITS_PER_LONG] &= ~_BITULL(nr % BITS_PER_LONG);
 }
 
 static inline int test_bit(unsigned int nr, const unsigned long *addr)
 {
-	return !!((1UL << (nr % BITS_PER_LONG)) &
+	return !!(_BITULL(nr % BITS_PER_LONG) &
 		  (((unsigned long *)addr)[nr / BITS_PER_LONG]));
 }
 
@@ -130,19 +130,19 @@ enum {
 
 static inline bool debug_on(unsigned long debug, unsigned int bit)
 {
-	return (debug & (1 << bit));
+	return (debug & _BITUL(bit));
 }
 
 /* Internal values for old-style offload flags.  Values and names
  * must not clash with the flags defined for ETHTOOL_{G,S}FLAGS.
  */
-#define ETH_FLAG_RXCSUM		(1 << 0)
-#define ETH_FLAG_TXCSUM		(1 << 1)
-#define ETH_FLAG_SG		(1 << 2)
-#define ETH_FLAG_TSO		(1 << 3)
-#define ETH_FLAG_UFO		(1 << 4)
-#define ETH_FLAG_GSO		(1 << 5)
-#define ETH_FLAG_GRO		(1 << 6)
+#define ETH_FLAG_RXCSUM		_BITUL(0)
+#define ETH_FLAG_TXCSUM		_BITUL(1)
+#define ETH_FLAG_SG		_BITUL(2)
+#define ETH_FLAG_TSO		_BITUL(3)
+#define ETH_FLAG_UFO		_BITUL(4)
+#define ETH_FLAG_GSO		_BITUL(5)
+#define ETH_FLAG_GRO		_BITUL(6)
 #define ETH_FLAG_INT_MASK	(ETH_FLAG_RXCSUM | ETH_FLAG_TXCSUM |	\
 				 ETH_FLAG_SG | ETH_FLAG_TSO | ETH_FLAG_UFO | \
 				 ETH_FLAG_GSO | ETH_FLAG_GRO),
@@ -205,14 +205,14 @@ static inline int ethtool_link_mode_test_bit(unsigned int nr, const u32 *mask)
 {
 	if (nr >= ETHTOOL_LINK_MODE_MASK_MAX_KERNEL_NBITS)
 		return !!0;
-	return !!(mask[nr / 32] & (1UL << (nr % 32)));
+	return !!(mask[nr / 32] & _BITUL(nr % 32));
 }
 
 static inline int ethtool_link_mode_set_bit(unsigned int nr, u32 *mask)
 {
 	if (nr >= ETHTOOL_LINK_MODE_MASK_MAX_KERNEL_NBITS)
 		return -1;
-	mask[nr / 32] |= (1UL << (nr % 32));
+	mask[nr / 32] |= _BITUL(nr % 32);
 	return 0;
 }
 

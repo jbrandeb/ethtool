@@ -1229,7 +1229,7 @@ enum {
 
 #define IFLA_STATS_MAX (__IFLA_STATS_MAX - 1)
 
-#define IFLA_STATS_FILTER_BIT(ATTR)	(1 << (ATTR - 1))
+#define IFLA_STATS_FILTER__BITUL(ATTR)	(1 << (ATTR - 1))
 
 enum {
 	IFLA_STATS_GETSET_UNSPEC,

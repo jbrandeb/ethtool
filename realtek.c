@@ -227,17 +227,17 @@ print_intr_bits(u16 mask)
 {
 	fprintf(stdout,
 		"      %s%s%s%s%s%s%s%s%s%s%s\n",
-		mask & (1 << 15)	? "SERR " : "",
-		mask & (1 << 14)	? "TimeOut " : "",
-		mask & (1 << 8)		? "SWInt " : "",
-		mask & (1 << 7)		? "TxNoBuf " : "",
-		mask & (1 << 6)		? "RxFIFO " : "",
-		mask & (1 << 5)		? "LinkChg " : "",
-		mask & (1 << 4)		? "RxNoBuf " : "",
-		mask & (1 << 3)		? "TxErr " : "",
-		mask & (1 << 2)		? "TxOK " : "",
-		mask & (1 << 1)		? "RxErr " : "",
-		mask & (1 << 0)		? "RxOK " : "");
+		mask & _BITUL(15)	? "SERR " : "",
+		mask & _BITUL(14)	? "TimeOut " : "",
+		mask & _BITUL(8)		? "SWInt " : "",
+		mask & _BITUL(7)		? "TxNoBuf " : "",
+		mask & _BITUL(6)		? "RxFIFO " : "",
+		mask & _BITUL(5)		? "LinkChg " : "",
+		mask & _BITUL(4)		? "RxNoBuf " : "",
+		mask & _BITUL(3)		? "TxErr " : "",
+		mask & _BITUL(2)		? "TxOK " : "",
+		mask & _BITUL(1)		? "RxErr " : "",
+		mask & _BITUL(0)		? "RxOK " : "");
 }
 
 int
@@ -342,10 +342,10 @@ realtek_dump_regs(struct ethtool_drvinfo *info __maybe_unused,
 	if (v & 0xf) {
 	fprintf(stdout,
 		"      %s%s%s%s\n",
-		v & (1 << 3) ? "ERxGood " : "",
-		v & (1 << 2) ? "ERxBad " : "",
-		v & (1 << 1) ? "ERxOverWrite " : "",
-		v & (1 << 0) ? "ERxOK " : "");
+		v & _BITUL(3) ? "ERxGood " : "",
+		v & _BITUL(2) ? "ERxBad " : "",
+		v & _BITUL(1) ? "ERxOverWrite " : "",
+		v & _BITUL(0) ? "ERxOK " : "");
 	}
 
 	v = data8[0x37];
@@ -353,9 +353,9 @@ realtek_dump_regs(struct ethtool_drvinfo *info __maybe_unused,
 		"0x37: Command                                       0x%02x\n"
 		"      Rx %s, Tx %s%s\n",
 		data8[0x37],
-		v & (1 << 3) ? "on" : "off",
-		v & (1 << 2) ? "on" : "off",
-		v & (1 << 4) ? ", RESET" : "");
+		v & _BITUL(3) ? "on" : "off",
+		v & _BITUL(2) ? "on" : "off",
+		v & _BITUL(4) ? ", RESET" : "");
 
 	if (board_type < RTL_GIGA_MAC_VER_01) {
 	fprintf(stdout,
@@ -631,17 +631,17 @@ realtek_dump_regs(struct ethtool_drvinfo *info __maybe_unused,
 	fprintf(stdout,
 		"0xE0: C+ Command                                  0x%04x\n",
 		v);
-	if (v & (1 << 9))
+	if (v & _BITUL(9))
 		fprintf(stdout, "      Big-endian mode\n");
-	if (v & (1 << 8))
+	if (v & _BITUL(8))
 		fprintf(stdout, "      Home LAN enable\n");
-	if (v & (1 << 6))
+	if (v & _BITUL(6))
 		fprintf(stdout, "      VLAN de-tagging\n");
-	if (v & (1 << 5))
+	if (v & _BITUL(5))
 		fprintf(stdout, "      RX checksumming\n");
-	if (v & (1 << 4))
+	if (v & _BITUL(4))
 		fprintf(stdout, "      PCI 64-bit DAC\n");
-	if (v & (1 << 3))
+	if (v & _BITUL(3))
 		fprintf(stdout, "      PCI Multiple RW\n");
 
 	v = data[0xe0 >> 2] >> 16;

@@ -97,7 +97,7 @@ print_rx_missed(u32 csr8)
 {
 	fprintf(stdout,
 		"0x40: CSR8 (Missed Frames Counter)       0x%08x\n", csr8);
-	if (csr8 & (1 << 16))
+	if (csr8 & _BITUL(16))
 		fprintf(stdout,
 		"      Counter overflow\n");
 	else {
@@ -131,7 +131,7 @@ static void de21040_dump_regs(struct ethtool_drvinfo *info __maybe_unused,
 		,
 		v,
 		csr0_tap[(v >> 17) & 3],
-		v & (1 << 16) ? "Diagnostic" : "Standard",
+		v & _BITUL(16) ? "Diagnostic" : "Standard",
 		csr0_cache_al[(v >> 14) & 3]);
 	tmp = (v >> 8) & 0x3f;
 	if (tmp == 0)
@@ -145,10 +145,10 @@ static void de21040_dump_regs(struct ethtool_drvinfo *info __maybe_unused,
 		"      Descriptor skip length %d longwords\n"
 		"      %s bus arbitration scheme\n"
 		,
-		v & (1 << 7) ? "Big" : "Little",
+		v & _BITUL(7) ? "Big" : "Little",
 		(v >> 2) & 0x1f,
-		v & (1 << 1) ? "Round-robin" : "RX-has-priority");
-	if (v & (1 << 0))
+		v & _BITUL(1) ? "Round-robin" : "RX-has-priority");
+	if (v & _BITUL(0))
 		fprintf(stdout, "      Software reset asserted\n");
 
 	/*
@@ -168,29 +168,29 @@ static void de21040_dump_regs(struct ethtool_drvinfo *info __maybe_unused,
 		"      Link %s\n"
 		,
 		v,
-		v & (1 << 13) ? csr5_buserr[(v >> 23) & 0x7] : "",
+		v & _BITUL(13) ? csr5_buserr[(v >> 23) & 0x7] : "",
 		csr5_tx_state[(v >> 20) & 0x7],
 		csr5_rx_state[(v >> 17) & 0x7],
-		v & (1 << 12) ? "fail" : "OK");
-	if (v & (1 << 16))
+		v & _BITUL(12) ? "fail" : "OK");
+	if (v & _BITUL(16))
 		fprintf(stdout,
 		"      Normal interrupts: %s%s%s\n"
 		,
-		v & (1 << 0) ? "TxOK " : "",
-		v & (1 << 2) ? "TxNoBufs " : "",
-		v & (1 << 6) ? "RxOK" : "");
-	if (v & (1 << 15))
+		v & _BITUL(0) ? "TxOK " : "",
+		v & _BITUL(2) ? "TxNoBufs " : "",
+		v & _BITUL(6) ? "RxOK" : "");
+	if (v & _BITUL(15))
 		fprintf(stdout,
 		"      Abnormal intr: %s%s%s%s%s%s%s%s\n"
 		,
-		v & (1 << 1) ? "TxStop " : "",
-		v & (1 << 3) ? "TxJabber " : "",
-		v & (1 << 5) ? "TxUnder " : "",
-		v & (1 << 7) ? "RxNoBufs " : "",
-		v & (1 << 8) ? "RxStopped " : "",
-		v & (1 << 9) ? "RxTimeout " : "",
-		v & (1 << 10) ? "AUI_TP " : "",
-		v & (1 << 11) ? "FD_Short " : "");
+		v & _BITUL(1) ? "TxStop " : "",
+		v & _BITUL(3) ? "TxJabber " : "",
+		v & _BITUL(5) ? "TxUnder " : "",
+		v & _BITUL(7) ? "RxNoBufs " : "",
+		v & _BITUL(8) ? "RxStopped " : "",
+		v & _BITUL(9) ? "RxTimeout " : "",
+		v & _BITUL(10) ? "AUI_TP " : "",
+		v & _BITUL(11) ? "FD_Short " : "");
 
 	/*
 	 * CSR6
@@ -216,22 +216,22 @@ static void de21040_dump_regs(struct ethtool_drvinfo *info __maybe_unused,
 		"      %s filtering mode\n"
 		,
 		v,
-		v & (1<<17) ? "      Capture effect enabled\n" : "",
-		v & (1<<16) ? "      Back pressure enabled\n" : "",
+		v & _BITUL(17) ? "      Capture effect enabled\n" : "",
+		v & _BITUL(16) ? "      Back pressure enabled\n" : "",
 		csr6_tx_thresh[(v >> 14) & 3],
-		v & (1<<13) ? "en" : "dis",
-		v & (1<<12) ? "      Forcing collisions\n" : "",
+		v & _BITUL(13) ? "en" : "dis",
+		v & _BITUL(12) ? "      Forcing collisions\n" : "",
 		csr6_om[(v >> 10) & 3],
-		v & (1<<9) ? "Full" : "Half",
-		v & (1<<8) ? "      Flaky oscillator disable\n" : "",
-		v & (1<<7) ? "      Pass All Multicast\n" : "",
-		v & (1<<6) ? "      Promisc Mode\n" : "",
-		v & (1<<5) ? "      Start/Stop Backoff Counter\n" : "",
-		v & (1<<4) ? "      Inverse Filtering\n" : "",
-		v & (1<<3) ? "      Pass Bad Frames\n" : "",
-		v & (1<<2) ? "      Hash-only Filtering\n" : "",
-		v & (1<<1) ? "en" : "dis",
-		v & (1<<0) ? "Hash" : "Perfect");
+		v & _BITUL(9) ? "Full" : "Half",
+		v & _BITUL(8) ? "      Flaky oscillator disable\n" : "",
+		v & _BITUL(7) ? "      Pass All Multicast\n" : "",
+		v & _BITUL(6) ? "      Promisc Mode\n" : "",
+		v & _BITUL(5) ? "      Start/Stop Backoff Counter\n" : "",
+		v & _BITUL(4) ? "      Inverse Filtering\n" : "",
+		v & _BITUL(3) ? "      Pass Bad Frames\n" : "",
+		v & _BITUL(2) ? "      Hash-only Filtering\n" : "",
+		v & _BITUL(1) ? "en" : "dis",
+		v & _BITUL(0) ? "Hash" : "Perfect");
 
 	/*
 	 * CSR7
@@ -256,21 +256,21 @@ static void de21040_dump_regs(struct ethtool_drvinfo *info __maybe_unused,
 		"%s"
 		,
 		v,
-		v & (1<<16) ? "      Normal interrupt summary\n" : "",
-		v & (1<<15) ? "      Abnormal interrupt summary\n" : "",
-		v & (1<<13) ? "      System error\n" : "",
-		v & (1<<12) ? "      Link fail\n" : "",
-		v & (1<<11) ? "      Full duplex\n" : "",
-		v & (1<<10) ? "      AUI_TP pin\n" : "",
-		v & (1<<9) ? "      Receive watchdog timeout\n" : "",
-		v & (1<<8) ? "      Receive stopped\n" : "",
-		v & (1<<7) ? "      Receive buffer unavailable\n" : "",
-		v & (1<<6) ? "      Receive interrupt\n" : "",
-		v & (1<<5) ? "      Transmit underflow\n" : "",
-		v & (1<<3) ? "      Transmit jabber timeout\n" : "",
-		v & (1<<2) ? "      Transmit buffer unavailable\n" : "",
-		v & (1<<1) ? "      Transmit stopped\n" : "",
-		v & (1<<0) ? "      Transmit interrupt\n" : "");
+		v & _BITUL(16) ? "      Normal interrupt summary\n" : "",
+		v & _BITUL(15) ? "      Abnormal interrupt summary\n" : "",
+		v & _BITUL(13) ? "      System error\n" : "",
+		v & _BITUL(12) ? "      Link fail\n" : "",
+		v & _BITUL(11) ? "      Full duplex\n" : "",
+		v & _BITUL(10) ? "      AUI_TP pin\n" : "",
+		v & _BITUL(9) ? "      Receive watchdog timeout\n" : "",
+		v & _BITUL(8) ? "      Receive stopped\n" : "",
+		v & _BITUL(7) ? "      Receive buffer unavailable\n" : "",
+		v & _BITUL(6) ? "      Receive interrupt\n" : "",
+		v & _BITUL(5) ? "      Transmit underflow\n" : "",
+		v & _BITUL(3) ? "      Transmit jabber timeout\n" : "",
+		v & _BITUL(2) ? "      Transmit buffer unavailable\n" : "",
+		v & _BITUL(1) ? "      Transmit stopped\n" : "",
+		v & _BITUL(0) ? "      Transmit interrupt\n" : "");
 
 	/*
 	 * CSR8
@@ -307,14 +307,14 @@ static void de21040_dump_regs(struct ethtool_drvinfo *info __maybe_unused,
 		"      AUI_TP pin: %s\n"
 		,
 		v,
-		v & (1<<7) ? "      PLL sampler high\n" : "",
-		v & (1<<6) ? "      PLL sampler low\n" : "",
-		v & (1<<5) ? "      PLL self-test pass\n" : "",
-		v & (1<<4) ? "      PLL self-test done\n" : "",
-		v & (1<<3) ? "      Autopolarity state\n" : "",
-		v & (1<<2) ? "      Link fail\n" : "",
-		v & (1<<1) ? "      Network connection error\n" : "",
-		v & (1<<0) ? "AUI" : "TP");
+		v & _BITUL(7) ? "      PLL sampler high\n" : "",
+		v & _BITUL(6) ? "      PLL sampler low\n" : "",
+		v & _BITUL(5) ? "      PLL self-test pass\n" : "",
+		v & _BITUL(4) ? "      PLL self-test done\n" : "",
+		v & _BITUL(3) ? "      Autopolarity state\n" : "",
+		v & _BITUL(2) ? "      Link fail\n" : "",
+		v & _BITUL(1) ? "      Network connection error\n" : "",
+		v & _BITUL(0) ? "AUI" : "TP");
 
 	/*
 	 * CSR13
@@ -337,22 +337,22 @@ static void de21040_dump_regs(struct ethtool_drvinfo *info __maybe_unused,
 		"%s"
 		,
 		v,
-		v & (1<<15) ? "      Enable pins 5, 6, 7\n" : "",
-		v & (1<<14) ? "      Enable pins 2, 4\n" : "",
-		v & (1<<13) ? "      Enable pins 1, 3\n" : "",
-		v & (1<<12) ? "      Input enable\n" : "",
-		v & (1<<11) ? 1 : 0,
-		v & (1<<10) ? 1 : 0,
-		v & (1<<9) ? 1 : 0,
-		v & (1<<8) ? 1 : 0,
-		v & (1<<7) ? "      APLL start\n" : "",
-		v & (1<<6) ? "      Serial interface input multiplexer\n" : "",
-		v & (1<<5) ? "      Encoder input multiplexer\n" : "",
-		v & (1<<4) ? "      SIA PLL external input enable\n" : "",
-		v & (1<<3) ? "AUI" : "10base-T",
-		v & (1<<2) ? "      CSR autoconfiguration\n" : "",
-		v & (1<<1) ? "      AUI_TP pin autoconfiguration\n" : "",
-		v & (1<<0) ? "      SIA reset\n" : "");
+		v & _BITUL(15) ? "      Enable pins 5, 6, 7\n" : "",
+		v & _BITUL(14) ? "      Enable pins 2, 4\n" : "",
+		v & _BITUL(13) ? "      Enable pins 1, 3\n" : "",
+		v & _BITUL(12) ? "      Input enable\n" : "",
+		v & _BITUL(11) ? 1 : 0,
+		v & _BITUL(10) ? 1 : 0,
+		v & _BITUL(9) ? 1 : 0,
+		v & _BITUL(8) ? 1 : 0,
+		v & _BITUL(7) ? "      APLL start\n" : "",
+		v & _BITUL(6) ? "      Serial interface input multiplexer\n" : "",
+		v & _BITUL(5) ? "      Encoder input multiplexer\n" : "",
+		v & _BITUL(4) ? "      SIA PLL external input enable\n" : "",
+		v & _BITUL(3) ? "AUI" : "10base-T",
+		v & _BITUL(2) ? "      CSR autoconfiguration\n" : "",
+		v & _BITUL(1) ? "      AUI_TP pin autoconfiguration\n" : "",
+		v & _BITUL(0) ? "      SIA reset\n" : "");
 
 	/*
 	 * CSR14
@@ -374,18 +374,18 @@ static void de21040_dump_regs(struct ethtool_drvinfo *info __maybe_unused,
 		"%s"
 		,
 		v,
-		v & (1<<14) ? "      Set polarity plus\n" : "",
-		v & (1<<13) ? "      Autopolarity enable\n" : "",
-		v & (1<<12) ? "      Link test enable\n" : "",
-		v & (1<<11) ? "      Heartbeat enable\n" : "",
-		v & (1<<10) ? "      Collision detect enable\n" : "",
-		v & (1<<9) ? "      Collision squelch enable\n" : "",
-		v & (1<<8) ? "      Receive squelch enable\n" : "",
+		v & _BITUL(14) ? "      Set polarity plus\n" : "",
+		v & _BITUL(13) ? "      Autopolarity enable\n" : "",
+		v & _BITUL(12) ? "      Link test enable\n" : "",
+		v & _BITUL(11) ? "      Heartbeat enable\n" : "",
+		v & _BITUL(10) ? "      Collision detect enable\n" : "",
+		v & _BITUL(9) ? "      Collision squelch enable\n" : "",
+		v & _BITUL(8) ? "      Receive squelch enable\n" : "",
 		csr14_tp_comp[(v >> 4) & 0x3],
-		v & (1<<3) ? "      Link pulse send enable\n" : "",
-		v & (1<<2) ? "      Driver enable\n" : "",
-		v & (1<<1) ? "      Loopback enable\n" : "",
-		v & (1<<0) ? "      Encoder enable\n" : "");
+		v & _BITUL(3) ? "      Link pulse send enable\n" : "",
+		v & _BITUL(2) ? "      Driver enable\n" : "",
+		v & _BITUL(1) ? "      Loopback enable\n" : "",
+		v & _BITUL(0) ? "      Encoder enable\n" : "");
 
 	/*
 	 * CSR15
@@ -405,16 +405,16 @@ static void de21040_dump_regs(struct ethtool_drvinfo *info __maybe_unused,
 		"%s"
 		,
 		v,
-		v & (1<<13) ? "      Force receiver low\n" : "",
-		v & (1<<12) ? "      PLL self-test start\n" : "",
-		v & (1<<11) ? "      Force link fail\n" : "",
-		v & (1<<9) ? "      Force unsquelch\n" : "",
-		v & (1<<8) ? "      Test clock\n" : "",
-		v & (1<<5) ? "      Receive watchdog release\n" : "",
-		v & (1<<4) ? "      Receive watchdog disable\n" : "",
-		v & (1<<2) ? "      Jabber clock\n" : "",
-		v & (1<<1) ? "      Host unjab\n" : "",
-		v & (1<<0) ? "      Jabber disable\n" : "");
+		v & _BITUL(13) ? "      Force receiver low\n" : "",
+		v & _BITUL(12) ? "      PLL self-test start\n" : "",
+		v & _BITUL(11) ? "      Force link fail\n" : "",
+		v & _BITUL(9) ? "      Force unsquelch\n" : "",
+		v & _BITUL(8) ? "      Test clock\n" : "",
+		v & _BITUL(5) ? "      Receive watchdog release\n" : "",
+		v & _BITUL(4) ? "      Receive watchdog disable\n" : "",
+		v & _BITUL(2) ? "      Jabber clock\n" : "",
+		v & _BITUL(1) ? "      Host unjab\n" : "",
+		v & _BITUL(0) ? "      Jabber disable\n" : "");
 }
 
 static void de21041_dump_regs(struct ethtool_drvinfo *info __maybe_unused,
@@ -437,9 +437,9 @@ static void de21041_dump_regs(struct ethtool_drvinfo *info __maybe_unused,
 		"      Cache alignment: %s\n"
 		,
 		v,
-		v & (1 << 20) ? "Big" : "Little",
+		v & _BITUL(20) ? "Big" : "Little",
 		csr0_tap[(v >> 17) & 3],
-		v & (1 << 16) ? "Diagnostic" : "Standard",
+		v & _BITUL(16) ? "Diagnostic" : "Standard",
 		csr0_cache_al[(v >> 14) & 3]);
 	tmp = (v >> 8) & 0x3f;
 	if (tmp == 0)
@@ -453,10 +453,10 @@ static void de21041_dump_regs(struct ethtool_drvinfo *info __maybe_unused,
 		"      Descriptor skip length %d longwords\n"
 		"      %s bus arbitration scheme\n"
 		,
-		v & (1 << 7) ? "Big" : "Little",
+		v & _BITUL(7) ? "Big" : "Little",
 		(v >> 2) & 0x1f,
-		v & (1 << 1) ? "Round-robin" : "RX-has-priority");
-	if (v & (1 << 0))
+		v & _BITUL(1) ? "Round-robin" : "RX-has-priority");
+	if (v & _BITUL(0))
 		fprintf(stdout, "      Software reset asserted\n");
 
 	/*
@@ -476,30 +476,30 @@ static void de21041_dump_regs(struct ethtool_drvinfo *info __maybe_unused,
 		"      Link %s\n"
 		,
 		v,
-		v & (1 << 13) ? csr5_buserr[(v >> 23) & 0x7] : "",
+		v & _BITUL(13) ? csr5_buserr[(v >> 23) & 0x7] : "",
 		csr5_tx_state[(v >> 20) & 0x7],
 		csr5_rx_state[(v >> 17) & 0x7],
-		v & (1 << 12) ? "fail" : "OK");
-	if (v & (1 << 16))
+		v & _BITUL(12) ? "fail" : "OK");
+	if (v & _BITUL(16))
 		fprintf(stdout,
 		"      Normal interrupts: %s%s%s%s%s\n"
 		,
-		v & (1 << 0) ? "TxOK " : "",
-		v & (1 << 2) ? "TxNoBufs " : "",
-		v & (1 << 6) ? "RxOK" : "",
-		v & (1 << 11) ? "TimerExp " : "",
-		v & (1 << 14) ? "EarlyRx " : "");
-	if (v & (1 << 15))
+		v & _BITUL(0) ? "TxOK " : "",
+		v & _BITUL(2) ? "TxNoBufs " : "",
+		v & _BITUL(6) ? "RxOK" : "",
+		v & _BITUL(11) ? "TimerExp " : "",
+		v & _BITUL(14) ? "EarlyRx " : "");
+	if (v & _BITUL(15))
 		fprintf(stdout,
 		"      Abnormal intr: %s%s%s%s%s%s%s\n"
 		,
-		v & (1 << 1) ? "TxStop " : "",
-		v & (1 << 3) ? "TxJabber " : "",
-		v & (1 << 4) ? "ANC " : "",
-		v & (1 << 5) ? "TxUnder " : "",
-		v & (1 << 7) ? "RxNoBufs " : "",
-		v & (1 << 8) ? "RxStopped " : "",
-		v & (1 << 9) ? "RxTimeout " : "");
+		v & _BITUL(1) ? "TxStop " : "",
+		v & _BITUL(3) ? "TxJabber " : "",
+		v & _BITUL(4) ? "ANC " : "",
+		v & _BITUL(5) ? "TxUnder " : "",
+		v & _BITUL(7) ? "RxNoBufs " : "",
+		v & _BITUL(8) ? "RxStopped " : "",
+		v & _BITUL(9) ? "RxTimeout " : "");
 
 	/*
 	 * CSR6
@@ -525,22 +525,22 @@ static void de21041_dump_regs(struct ethtool_drvinfo *info __maybe_unused,
 		"      %s filtering mode\n"
 		,
 		v,
-		v & (1<<31) ? "      Special capture effect enabled\n" : "",
-		v & (1<<17) ? "      Capture effect enabled\n" : "",
+		v & _BITUL(31) ? "      Special capture effect enabled\n" : "",
+		v & _BITUL(17) ? "      Capture effect enabled\n" : "",
 		csr6_tx_thresh[(v >> 14) & 3],
-		v & (1<<13) ? "en" : "dis",
-		v & (1<<12) ? "      Forcing collisions\n" : "",
+		v & _BITUL(13) ? "en" : "dis",
+		v & _BITUL(12) ? "      Forcing collisions\n" : "",
 		csr6_om[(v >> 10) & 3],
-		v & (1<<9) ? "Full" : "Half",
-		v & (1<<8) ? "      Flaky oscillator disable\n" : "",
-		v & (1<<7) ? "      Pass All Multicast\n" : "",
-		v & (1<<6) ? "      Promisc Mode\n" : "",
-		v & (1<<5) ? "      Start/Stop Backoff Counter\n" : "",
-		v & (1<<4) ? "      Inverse Filtering\n" : "",
-		v & (1<<3) ? "      Pass Bad Frames\n" : "",
-		v & (1<<2) ? "      Hash-only Filtering\n" : "",
-		v & (1<<1) ? "en" : "dis",
-		v & (1<<0) ? "Hash" : "Perfect");
+		v & _BITUL(9) ? "Full" : "Half",
+		v & _BITUL(8) ? "      Flaky oscillator disable\n" : "",
+		v & _BITUL(7) ? "      Pass All Multicast\n" : "",
+		v & _BITUL(6) ? "      Promisc Mode\n" : "",
+		v & _BITUL(5) ? "      Start/Stop Backoff Counter\n" : "",
+		v & _BITUL(4) ? "      Inverse Filtering\n" : "",
+		v & _BITUL(3) ? "      Pass Bad Frames\n" : "",
+		v & _BITUL(2) ? "      Hash-only Filtering\n" : "",
+		v & _BITUL(1) ? "en" : "dis",
+		v & _BITUL(0) ? "Hash" : "Perfect");
 
 	/*
 	 * CSR7
@@ -566,22 +566,22 @@ static void de21041_dump_regs(struct ethtool_drvinfo *info __maybe_unused,
 		"%s"
 		,
 		v,
-		v & (1<<16) ? "      Normal interrupt summary\n" : "",
-		v & (1<<15) ? "      Abnormal interrupt summary\n" : "",
-		v & (1<<14) ? "      Early receive interrupt\n" : "",
-		v & (1<<13) ? "      System error\n" : "",
-		v & (1<<12) ? "      Link fail\n" : "",
-		v & (1<<11) ? "      Timer expired\n" : "",
-		v & (1<<9) ? "      Receive watchdog timeout\n" : "",
-		v & (1<<8) ? "      Receive stopped\n" : "",
-		v & (1<<7) ? "      Receive buffer unavailable\n" : "",
-		v & (1<<6) ? "      Receive interrupt\n" : "",
-		v & (1<<5) ? "      Transmit underflow\n" : "",
-		v & (1<<4) ? "      Link pass\n" : "",
-		v & (1<<3) ? "      Transmit jabber timeout\n" : "",
-		v & (1<<2) ? "      Transmit buffer unavailable\n" : "",
-		v & (1<<1) ? "      Transmit stopped\n" : "",
-		v & (1<<0) ? "      Transmit interrupt\n" : "");
+		v & _BITUL(16) ? "      Normal interrupt summary\n" : "",
+		v & _BITUL(15) ? "      Abnormal interrupt summary\n" : "",
+		v & _BITUL(14) ? "      Early receive interrupt\n" : "",
+		v & _BITUL(13) ? "      System error\n" : "",
+		v & _BITUL(12) ? "      Link fail\n" : "",
+		v & _BITUL(11) ? "      Timer expired\n" : "",
+		v & _BITUL(9) ? "      Receive watchdog timeout\n" : "",
+		v & _BITUL(8) ? "      Receive stopped\n" : "",
+		v & _BITUL(7) ? "      Receive buffer unavailable\n" : "",
+		v & _BITUL(6) ? "      Receive interrupt\n" : "",
+		v & _BITUL(5) ? "      Transmit underflow\n" : "",
+		v & _BITUL(4) ? "      Link pass\n" : "",
+		v & _BITUL(3) ? "      Transmit jabber timeout\n" : "",
+		v & _BITUL(2) ? "      Transmit buffer unavailable\n" : "",
+		v & _BITUL(1) ? "      Transmit stopped\n" : "",
+		v & _BITUL(0) ? "      Transmit interrupt\n" : "");
 
 	/*
 	 * CSR8
@@ -598,20 +598,20 @@ static void de21041_dump_regs(struct ethtool_drvinfo *info __maybe_unused,
 		"      Data: %d%d%d%d%d%d%d%d\n"
 		,
 		v,
-		v & (1<<15) ? "Mode " : "",
-		v & (1<<14) ? "Read " : "",
-		v & (1<<13) ? "Write " : "",
-		v & (1<<12) ? "BootROM " : "",
-		v & (1<<11) ? "SROM " : "",
-		v & (1<<10) ? "ExtReg " : "",
-		v & (1<<7) ? 1 : 0,
-		v & (1<<6) ? 1 : 0,
-		v & (1<<5) ? 1 : 0,
-		v & (1<<4) ? 1 : 0,
-		v & (1<<3) ? 1 : 0,
-		v & (1<<2) ? 1 : 0,
-		v & (1<<1) ? 1 : 0,
-		v & (1<<0) ? 1 : 0);
+		v & _BITUL(15) ? "Mode " : "",
+		v & _BITUL(14) ? "Read " : "",
+		v & _BITUL(13) ? "Write " : "",
+		v & _BITUL(12) ? "BootROM " : "",
+		v & _BITUL(11) ? "SROM " : "",
+		v & _BITUL(10) ? "ExtReg " : "",
+		v & _BITUL(7) ? 1 : 0,
+		v & _BITUL(6) ? 1 : 0,
+		v & _BITUL(5) ? 1 : 0,
+		v & _BITUL(4) ? 1 : 0,
+		v & _BITUL(3) ? 1 : 0,
+		v & _BITUL(2) ? 1 : 0,
+		v & _BITUL(1) ? 1 : 0,
+		v & _BITUL(0) ? 1 : 0);
 
 	/*
 	 * CSR10
@@ -630,7 +630,7 @@ static void de21041_dump_regs(struct ethtool_drvinfo *info __maybe_unused,
 		"      Timer value: %u cycles\n"
 		,
 		v,
-		v & (1<<16) ? "      Continuous mode\n" : "",
+		v & _BITUL(16) ? "      Continuous mode\n" : "",
 		v & 0xffff);
 
 	/*
@@ -656,19 +656,19 @@ static void de21041_dump_regs(struct ethtool_drvinfo *info __maybe_unused,
 		,
 		v,
 		v >> 16,
-		v & (1<<15) ? "      Link partner negotiable\n" : "",
+		v & _BITUL(15) ? "      Link partner negotiable\n" : "",
 		csr12_nway_state[(v >> 12) & 0x7],
-		v & (1<<11) ? "      Transmit remote fault\n" : "",
-		v & (1<<10) ? "      Unstable NLP detected\n" : "",
-		v & (1<<9) ? "      Non-selected port receive activity\n" : "",
-		v & (1<<8) ? "      Selected port receive activity\n" : "",
-		v & (1<<7) ? "      PLL sampler high\n" : "",
-		v & (1<<6) ? "      PLL sampler low\n" : "",
-		v & (1<<5) ? "      PLL self-test pass\n" : "",
-		v & (1<<4) ? "      PLL self-test done\n" : "",
-		v & (1<<3) ? "      Autopolarity state\n" : "",
-		v & (1<<2) ? "      Link fail\n" : "",
-		v & (1<<1) ? "      Network connection error\n" : "");
+		v & _BITUL(11) ? "      Transmit remote fault\n" : "",
+		v & _BITUL(10) ? "      Unstable NLP detected\n" : "",
+		v & _BITUL(9) ? "      Non-selected port receive activity\n" : "",
+		v & _BITUL(8) ? "      Selected port receive activity\n" : "",
+		v & _BITUL(7) ? "      PLL sampler high\n" : "",
+		v & _BITUL(6) ? "      PLL sampler low\n" : "",
+		v & _BITUL(5) ? "      PLL self-test pass\n" : "",
+		v & _BITUL(4) ? "      PLL self-test done\n" : "",
+		v & _BITUL(3) ? "      Autopolarity state\n" : "",
+		v & _BITUL(2) ? "      Link fail\n" : "",
+		v & _BITUL(1) ? "      Network connection error\n" : "");
 
 	/*
 	 * CSR13
@@ -683,9 +683,9 @@ static void de21041_dump_regs(struct ethtool_drvinfo *info __maybe_unused,
 		,
 		v,
 		(v >> 4) & 0xfff,
-		v & (1<<3) ? "AUI/BNC port" : "10base-T port",
-		v & (1<<2) ? "      CSR autoconfiguration enabled\n" : "",
-		v & (1<<0) ? "      SIA register reset asserted\n" : "");
+		v & _BITUL(3) ? "AUI/BNC port" : "10base-T port",
+		v & _BITUL(2) ? "      CSR autoconfiguration enabled\n" : "",
+		v & _BITUL(0) ? "      SIA register reset asserted\n" : "");
 
 	/*
 	 * CSR14
@@ -710,21 +710,21 @@ static void de21041_dump_regs(struct ethtool_drvinfo *info __maybe_unused,
 		"%s"
 		,
 		v,
-		v & (1<<15) ? "      10base-T/AUI autosensing\n" : "",
-		v & (1<<14) ? "      Set polarity plus\n" : "",
-		v & (1<<13) ? "      Autopolarity enable\n" : "",
-		v & (1<<12) ? "      Link test enable\n" : "",
-		v & (1<<11) ? "      Heartbeat enable\n" : "",
-		v & (1<<10) ? "      Collision detect enable\n" : "",
-		v & (1<<9) ? "      Collision squelch enable\n" : "",
-		v & (1<<8) ? "      Receive squelch enable\n" : "",
-		v & (1<<7) ? "      Autonegotiation enable\n" : "",
-		v & (1<<6) ? "      Must Be One\n" : "",
+		v & _BITUL(15) ? "      10base-T/AUI autosensing\n" : "",
+		v & _BITUL(14) ? "      Set polarity plus\n" : "",
+		v & _BITUL(13) ? "      Autopolarity enable\n" : "",
+		v & _BITUL(12) ? "      Link test enable\n" : "",
+		v & _BITUL(11) ? "      Heartbeat enable\n" : "",
+		v & _BITUL(10) ? "      Collision detect enable\n" : "",
+		v & _BITUL(9) ? "      Collision squelch enable\n" : "",
+		v & _BITUL(8) ? "      Receive squelch enable\n" : "",
+		v & _BITUL(7) ? "      Autonegotiation enable\n" : "",
+		v & _BITUL(6) ? "      Must Be One\n" : "",
 		csr14_tp_comp[(v >> 4) & 0x3],
-		v & (1<<3) ? "      Link pulse send enable\n" : "",
-		v & (1<<2) ? "      Driver enable\n" : "",
-		v & (1<<1) ? "      Loopback enable\n" : "",
-		v & (1<<0) ? "      Encoder enable\n" : "");
+		v & _BITUL(3) ? "      Link pulse send enable\n" : "",
+		v & _BITUL(2) ? "      Driver enable\n" : "",
+		v & _BITUL(1) ? "      Loopback enable\n" : "",
+		v & _BITUL(0) ? "      Encoder enable\n" : "");
 
 	/*
 	 * CSR15
@@ -750,22 +750,22 @@ static void de21041_dump_regs(struct ethtool_drvinfo *info __maybe_unused,
 		"%s"
 		,
 		v,
-		v & (1<<15) ? "      GP LED2 on\n" : "",
-		v & (1<<14) ? "      GP LED2 enable\n" : "",
-		v & (1<<13) ? "      Force receiver low\n" : "",
-		v & (1<<12) ? "      PLL self-test start\n" : "",
-		v & (1<<11) ? "      LED stretch disable\n" : "",
-		v & (1<<10) ? "      Force link fail\n" : "",
-		v & (1<<9) ? "      Force unsquelch\n" : "",
-		v & (1<<8) ? "      Test clock\n" : "",
-		v & (1<<7) ? "      GP LED1 on\n" : "",
-		v & (1<<6) ? "      GP LED1 enable\n" : "",
-		v & (1<<5) ? "      Receive watchdog release\n" : "",
-		v & (1<<4) ? "      Receive watchdog disable\n" : "",
-		v & (1<<3) ? "AUI" : "BNC",
-		v & (1<<2) ? "      Jabber clock\n" : "",
-		v & (1<<1) ? "      Host unjab\n" : "",
-		v & (1<<0) ? "      Jabber disable\n" : "");
+		v & _BITUL(15) ? "      GP LED2 on\n" : "",
+		v & _BITUL(14) ? "      GP LED2 enable\n" : "",
+		v & _BITUL(13) ? "      Force receiver low\n" : "",
+		v & _BITUL(12) ? "      PLL self-test start\n" : "",
+		v & _BITUL(11) ? "      LED stretch disable\n" : "",
+		v & _BITUL(10) ? "      Force link fail\n" : "",
+		v & _BITUL(9) ? "      Force unsquelch\n" : "",
+		v & _BITUL(8) ? "      Test clock\n" : "",
+		v & _BITUL(7) ? "      GP LED1 on\n" : "",
+		v & _BITUL(6) ? "      GP LED1 enable\n" : "",
+		v & _BITUL(5) ? "      Receive watchdog release\n" : "",
+		v & _BITUL(4) ? "      Receive watchdog disable\n" : "",
+		v & _BITUL(3) ? "AUI" : "BNC",
+		v & _BITUL(2) ? "      Jabber clock\n" : "",
+		v & _BITUL(1) ? "      Host unjab\n" : "",
+		v & _BITUL(0) ? "      Jabber disable\n" : "");
 }
 
 int

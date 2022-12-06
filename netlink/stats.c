@@ -244,7 +244,7 @@ static int stats_parse_all_groups(struct nl_context *nlctx, uint16_t type,
 		return -ENOMEM;
 
 	for (i = 0; i < nbits; i++)
-		bits[i / 32] |= 1U << (i % 32);
+		bits[i / 32] |= _BITUL(i % 32);
 
 	ret = -EMSGSIZE;
 	nest = ethnla_nest_start(msgbuff, type);

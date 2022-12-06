@@ -17,7 +17,7 @@
 int
 bitset(u32 val, int bit)
 {
-	if (val & (1 << bit))
+	if (val & _BITUL(bit))
 		return 1;
 	return 0;
 }

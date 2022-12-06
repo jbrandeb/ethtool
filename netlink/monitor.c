@@ -87,12 +87,12 @@ static void clear_filter(struct nl_context *nlctx)
 
 static bool test_filter_cmd(const struct nl_context *nlctx, unsigned int cmd)
 {
-	return nlctx->filter_cmds[cmd / 32] & (1U << (cmd % 32));
+	return nlctx->filter_cmds[cmd / 32] & _BITUL(cmd % 32);
 }
 
 static void set_filter_cmd(struct nl_context *nlctx, unsigned int cmd)
 {
-	nlctx->filter_cmds[cmd / 32] |= (1U << (cmd % 32));
+	nlctx->filter_cmds[cmd / 32] |= _BITUL(cmd % 32);
 }
 
 static void set_filter_all(struct nl_context *nlctx)

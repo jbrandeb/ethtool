@@ -128,7 +128,7 @@ struct feature_defs {
 
 #define FEATURE_BITS_TO_BLOCKS(n_bits)		DIV_ROUND_UP(n_bits, 32U)
 #define FEATURE_WORD(blocks, index, field)	((blocks)[(index) / 32U].field)
-#define FEATURE_FIELD_FLAG(index)		(1U << (index) % 32U)
+#define FEATURE_FIELD_FLAG(index)		(_BITUL((index)) % 32U)
 #define FEATURE_BIT_SET(blocks, index, field)			\
 	(FEATURE_WORD(blocks, index, field) |= FEATURE_FIELD_FLAG(index))
 #define FEATURE_BIT_CLEAR(blocks, index, field)			\
@@ -1667,7 +1667,7 @@ static int dump_tsinfo(const struct ethtool_ts_info *info)
 	fprintf(stdout, "Capabilities:\n");
 
 	for (i = 0; i < N_SOTS; i++) {
-		if (info->so_timestamping & (1 << i))
+		if (info->so_timestamping & _BITUL(i))
 			fprintf(stdout, "\t%s\n", so_timestamping_labels[i]);
 	}
 
@@ -1686,7 +1686,7 @@ static int dump_tsinfo(const struct ethtool_ts_info *info)
 		fprintf(stdout, "\n");
 
 	for (i = 0; i < N_TX_TYPES; i++) {
-		if (info->tx_types & (1 << i))
+		if (info->tx_types & _BITUL(i))
 			fprintf(stdout,	"\t%s\n", tx_type_labels[i]);
 	}
 
@@ -1698,7 +1698,7 @@ static int dump_tsinfo(const struct ethtool_ts_info *info)
 		fprintf(stdout, "\n");
 
 	for (i = 0; i < N_RX_FILTERS; i++) {
-		if (info->rx_filters & (1 << i))
+		if (info->rx_filters & _BITUL(i))
 			fprintf(stdout, "\t%s\n", rx_filter_labels[i]);
 	}
 
@@ -1719,7 +1719,7 @@ get_stringset(struct cmd_context *ctx, enum ethtool_stringset set_id,
 
 	sset_info.hdr.cmd = ETHTOOL_GSSET_INFO;
 	sset_info.hdr.reserved = 0;
-	sset_info.hdr.sset_mask = 1ULL << set_id;
+	sset_info.hdr.sset_mask = _BITULL(set_id);
 	if (send_ioctl(ctx, &sset_info) == 0) {
 		const u32 *sset_lengths = sset_info.hdr.data;
 
@@ -4029,7 +4029,7 @@ static int do_grxfh(struct cmd_context *ctx)
 	for (i = 0; i < hfuncs->len; i++)
 		printf("    %s: %s\n",
 		       (const char *)hfuncs->data + i * ETH_GSTRING_LEN,
-		       (rss->hfunc & (1 << i)) ? "on" : "off");
+		       (rss->hfunc & _BITUL(i)) ? "on" : "off");
 
 out:
 	free(hfuncs);
@@ -4315,7 +4315,7 @@ static int do_srxfh(struct cmd_context *ctx)
 					      i * ETH_GSTRING_LEN);
 			if (!strncmp(hfunc_name, req_hfunc_name,
 				     ETH_GSTRING_LEN))
-				req_hfunc = (u32)1 << i;
+				req_hfunc = _BITUL(i);
 		}
 
 		if (!req_hfunc) {
@@ -4722,7 +4722,7 @@ static int do_gprivflags(struct cmd_context *ctx)
 		printf("%-*s: %s\n",
 		       max_len,
 		       (const char *)strings->data + i * ETH_GSTRING_LEN,
-		       (flags.data & (1U << i)) ? "on" : "off");
+		       (flags.data & _BITUL(i)) ? "on" : "off");
 
 	rc = 0;
 
@@ -4769,7 +4769,7 @@ static int do_sprivflags(struct cmd_context *ctx)
 				   i * ETH_GSTRING_LEN);
 		cmdline[i].type = CMDL_FLAG;
 		cmdline[i].wanted_val = &wanted_flags;
-		cmdline[i].flag_val = 1U << i;
+		cmdline[i].flag_val = _BITUL(i);
 		cmdline[i].seen_val = &seen_flags;
 	}
 	parse_generic_cmdline(ctx, &any_changed, cmdline, strings->len);

@@ -48,128 +48,128 @@ static void sff8079_show_transceiver(const __u8 *id)
 	       id[3], id[4], id[5], id[6],
 	       id[7], id[8], id[9], id[10], id[36]);
 	/* 10G Ethernet Compliance Codes */
-	if (id[3] & (1 << 7))
+	if (id[3] & _BITUL(7))
 		printf("%s 10G Ethernet: 10G Base-ER" \
 		       " [SFF-8472 rev10.4 onwards]\n", pfx);
-	if (id[3] & (1 << 6))
+	if (id[3] & _BITUL(6))
 		printf("%s 10G Ethernet: 10G Base-LRM\n", pfx);
-	if (id[3] & (1 << 5))
+	if (id[3] & _BITUL(5))
 		printf("%s 10G Ethernet: 10G Base-LR\n", pfx);
-	if (id[3] & (1 << 4))
+	if (id[3] & _BITUL(4))
 		printf("%s 10G Ethernet: 10G Base-SR\n", pfx);
 	/* Infiniband Compliance Codes */
-	if (id[3] & (1 << 3))
+	if (id[3] & _BITUL(3))
 		printf("%s Infiniband: 1X SX\n", pfx);
-	if (id[3] & (1 << 2))
+	if (id[3] & _BITUL(2))
 		printf("%s Infiniband: 1X LX\n", pfx);
-	if (id[3] & (1 << 1))
+	if (id[3] & _BITUL(1))
 		printf("%s Infiniband: 1X Copper Active\n", pfx);
-	if (id[3] & (1 << 0))
+	if (id[3] & _BITUL(0))
 		printf("%s Infiniband: 1X Copper Passive\n", pfx);
 	/* ESCON Compliance Codes */
-	if (id[4] & (1 << 7))
+	if (id[4] & _BITUL(7))
 		printf("%s ESCON: ESCON MMF, 1310nm LED\n", pfx);
-	if (id[4] & (1 << 6))
+	if (id[4] & _BITUL(6))
 		printf("%s ESCON: ESCON SMF, 1310nm Laser\n", pfx);
 	/* SONET Compliance Codes */
-	if (id[4] & (1 << 5))
+	if (id[4] & _BITUL(5))
 		printf("%s SONET: OC-192, short reach\n", pfx);
-	if (id[4] & (1 << 4))
+	if (id[4] & _BITUL(4))
 		printf("%s SONET: SONET reach specifier bit 1\n", pfx);
-	if (id[4] & (1 << 3))
+	if (id[4] & _BITUL(3))
 		printf("%s SONET: SONET reach specifier bit 2\n", pfx);
-	if (id[4] & (1 << 2))
+	if (id[4] & _BITUL(2))
 		printf("%s SONET: OC-48, long reach\n", pfx);
-	if (id[4] & (1 << 1))
+	if (id[4] & _BITUL(1))
 		printf("%s SONET: OC-48, intermediate reach\n", pfx);
-	if (id[4] & (1 << 0))
+	if (id[4] & _BITUL(0))
 		printf("%s SONET: OC-48, short reach\n", pfx);
-	if (id[5] & (1 << 6))
+	if (id[5] & _BITUL(6))
 		printf("%s SONET: OC-12, single mode, long reach\n", pfx);
-	if (id[5] & (1 << 5))
+	if (id[5] & _BITUL(5))
 		printf("%s SONET: OC-12, single mode, inter. reach\n", pfx);
-	if (id[5] & (1 << 4))
+	if (id[5] & _BITUL(4))
 		printf("%s SONET: OC-12, short reach\n", pfx);
-	if (id[5] & (1 << 2))
+	if (id[5] & _BITUL(2))
 		printf("%s SONET: OC-3, single mode, long reach\n", pfx);
-	if (id[5] & (1 << 1))
+	if (id[5] & _BITUL(1))
 		printf("%s SONET: OC-3, single mode, inter. reach\n", pfx);
-	if (id[5] & (1 << 0))
+	if (id[5] & _BITUL(0))
 		printf("%s SONET: OC-3, short reach\n", pfx);
 	/* Ethernet Compliance Codes */
-	if (id[6] & (1 << 7))
+	if (id[6] & _BITUL(7))
 		printf("%s Ethernet: BASE-PX\n", pfx);
-	if (id[6] & (1 << 6))
+	if (id[6] & _BITUL(6))
 		printf("%s Ethernet: BASE-BX10\n", pfx);
-	if (id[6] & (1 << 5))
+	if (id[6] & _BITUL(5))
 		printf("%s Ethernet: 100BASE-FX\n", pfx);
-	if (id[6] & (1 << 4))
+	if (id[6] & _BITUL(4))
 		printf("%s Ethernet: 100BASE-LX/LX10\n", pfx);
-	if (id[6] & (1 << 3))
+	if (id[6] & _BITUL(3))
 		printf("%s Ethernet: 1000BASE-T\n", pfx);
-	if (id[6] & (1 << 2))
+	if (id[6] & _BITUL(2))
 		printf("%s Ethernet: 1000BASE-CX\n", pfx);
-	if (id[6] & (1 << 1))
+	if (id[6] & _BITUL(1))
 		printf("%s Ethernet: 1000BASE-LX\n", pfx);
-	if (id[6] & (1 << 0))
+	if (id[6] & _BITUL(0))
 		printf("%s Ethernet: 1000BASE-SX\n", pfx);
 	/* Fibre Channel link length */
-	if (id[7] & (1 << 7))
+	if (id[7] & _BITUL(7))
 		printf("%s FC: very long distance (V)\n", pfx);
-	if (id[7] & (1 << 6))
+	if (id[7] & _BITUL(6))
 		printf("%s FC: short distance (S)\n", pfx);
-	if (id[7] & (1 << 5))
+	if (id[7] & _BITUL(5))
 		printf("%s FC: intermediate distance (I)\n", pfx);
-	if (id[7] & (1 << 4))
+	if (id[7] & _BITUL(4))
 		printf("%s FC: long distance (L)\n", pfx);
-	if (id[7] & (1 << 3))
+	if (id[7] & _BITUL(3))
 		printf("%s FC: medium distance (M)\n", pfx);
 	/* Fibre Channel transmitter technology */
-	if (id[7] & (1 << 2))
+	if (id[7] & _BITUL(2))
 		printf("%s FC: Shortwave laser, linear Rx (SA)\n", pfx);
-	if (id[7] & (1 << 1))
+	if (id[7] & _BITUL(1))
 		printf("%s FC: Longwave laser (LC)\n", pfx);
-	if (id[7] & (1 << 0))
+	if (id[7] & _BITUL(0))
 		printf("%s FC: Electrical inter-enclosure (EL)\n", pfx);
-	if (id[8] & (1 << 7))
+	if (id[8] & _BITUL(7))
 		printf("%s FC: Electrical intra-enclosure (EL)\n", pfx);
-	if (id[8] & (1 << 6))
+	if (id[8] & _BITUL(6))
 		printf("%s FC: Shortwave laser w/o OFC (SN)\n", pfx);
-	if (id[8] & (1 << 5))
+	if (id[8] & _BITUL(5))
 		printf("%s FC: Shortwave laser with OFC (SL)\n", pfx);
-	if (id[8] & (1 << 4))
+	if (id[8] & _BITUL(4))
 		printf("%s FC: Longwave laser (LL)\n", pfx);
-	if (id[8] & (1 << 3))
+	if (id[8] & _BITUL(3))
 		printf("%s Active Cable\n", pfx);
-	if (id[8] & (1 << 2))
+	if (id[8] & _BITUL(2))
 		printf("%s Passive Cable\n", pfx);
-	if (id[8] & (1 << 1))
+	if (id[8] & _BITUL(1))
 		printf("%s FC: Copper FC-BaseT\n", pfx);
 	/* Fibre Channel transmission media */
-	if (id[9] & (1 << 7))
+	if (id[9] & _BITUL(7))
 		printf("%s FC: Twin Axial Pair (TW)\n", pfx);
-	if (id[9] & (1 << 6))
+	if (id[9] & _BITUL(6))
 		printf("%s FC: Twisted Pair (TP)\n", pfx);
-	if (id[9] & (1 << 5))
+	if (id[9] & _BITUL(5))
 		printf("%s FC: Miniature Coax (MI)\n", pfx);
-	if (id[9] & (1 << 4))
+	if (id[9] & _BITUL(4))
 		printf("%s FC: Video Coax (TV)\n", pfx);
-	if (id[9] & (1 << 3))
+	if (id[9] & _BITUL(3))
 		printf("%s FC: Multimode, 62.5um (M6)\n", pfx);
-	if (id[9] & (1 << 2))
+	if (id[9] & _BITUL(2))
 		printf("%s FC: Multimode, 50um (M5)\n", pfx);
-	if (id[9] & (1 << 0))
+	if (id[9] & _BITUL(0))
 		printf("%s FC: Single Mode (SM)\n", pfx);
 	/* Fibre Channel speed */
-	if (id[10] & (1 << 7))
+	if (id[10] & _BITUL(7))
 		printf("%s FC: 1200 MBytes/sec\n", pfx);
-	if (id[10] & (1 << 6))
+	if (id[10] & _BITUL(6))
 		printf("%s FC: 800 MBytes/sec\n", pfx);
-	if (id[10] & (1 << 4))
+	if (id[10] & _BITUL(4))
 		printf("%s FC: 400 MBytes/sec\n", pfx);
-	if (id[10] & (1 << 2))
+	if (id[10] & _BITUL(2))
 		printf("%s FC: 200 MBytes/sec\n", pfx);
-	if (id[10] & (1 << 0))
+	if (id[10] & _BITUL(0))
 		printf("%s FC: 100 MBytes/sec\n", pfx);
 	/* Extended Specification Compliance Codes from SFF-8024 */
 	if (id[36] == 0x1)
@@ -304,7 +304,7 @@ static void sff8079_show_oui(const __u8 *id)
 
 static void sff8079_show_wavelength_or_copper_compliance(const __u8 *id)
 {
-	if (id[8] & (1 << 2)) {
+	if (id[8] & _BITUL(2)) {
 		printf("\t%-41s : 0x%02x", "Passive Cu cmplnce.", id[60]);
 		switch (id[60]) {
 		case 0x00:
@@ -318,7 +318,7 @@ static void sff8079_show_wavelength_or_copper_compliance(const __u8 *id)
 			break;
 		}
 		printf(" [SFF-8472 rev10.4 only]\n");
-	} else if (id[8] & (1 << 3)) {
+	} else if (id[8] & _BITUL(3)) {
 		printf("\t%-41s : 0x%02x", "Active Cu cmplnce.", id[60]);
 		switch (id[60]) {
 		case 0x00:
@@ -371,31 +371,31 @@ static void sff8079_show_options(const __u8 *id)
 		"\tOption                                    :";
 
 	printf("\t%-41s : 0x%02x 0x%02x\n", "Option values", id[64], id[65]);
-	if (id[65] & (1 << 1))
+	if (id[65] & _BITUL(1))
 		printf("%s RX_LOS implemented\n", pfx);
-	if (id[65] & (1 << 2))
+	if (id[65] & _BITUL(2))
 		printf("%s RX_LOS implemented, inverted\n", pfx);
-	if (id[65] & (1 << 3))
+	if (id[65] & _BITUL(3))
 		printf("%s TX_FAULT implemented\n", pfx);
-	if (id[65] & (1 << 4))
+	if (id[65] & _BITUL(4))
 		printf("%s TX_DISABLE implemented\n", pfx);
-	if (id[65] & (1 << 5))
+	if (id[65] & _BITUL(5))
 		printf("%s RATE_SELECT implemented\n", pfx);
-	if (id[65] & (1 << 6))
+	if (id[65] & _BITUL(6))
 		printf("%s Tunable transmitter technology\n", pfx);
-	if (id[65] & (1 << 7))
+	if (id[65] & _BITUL(7))
 		printf("%s Receiver decision threshold implemented\n", pfx);
-	if (id[64] & (1 << 0))
+	if (id[64] & _BITUL(0))
 		printf("%s Linear receiver output implemented\n", pfx);
-	if (id[64] & (1 << 1))
+	if (id[64] & _BITUL(1))
 		printf("%s Power level 2 requirement\n", pfx);
-	if (id[64] & (1 << 2))
+	if (id[64] & _BITUL(2))
 		printf("%s Cooled transceiver implemented\n", pfx);
-	if (id[64] & (1 << 3))
+	if (id[64] & _BITUL(3))
 		printf("%s Retimer or CDR implemented\n", pfx);
-	if (id[64] & (1 << 4))
+	if (id[64] & _BITUL(4))
 		printf("%s Paging implemented\n", pfx);
-	if (id[64] & (1 << 5))
+	if (id[64] & _BITUL(5))
 		printf("%s Power level 3 requirement\n", pfx);
 }
 
@@ -485,7 +485,7 @@ int sff8079_show_all_nl(struct cmd_context *ctx)
 	sff8079_show_all_common(buf);
 
 	/* Finish if A2h page is not present */
-	if (!(buf[92] & (1 << 6)))
+	if (!(buf[92] & _BITUL(6)))
 		goto out;
 
 	/* Read A2h page */
