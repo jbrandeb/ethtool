@@ -97,15 +97,18 @@ void test_free(void *ptr)
 
 void *test_realloc(void *ptr, size_t size)
 {
-	struct list_head *block = NULL;
+	struct list_head *block = NULL, *oldblock;
 
 	if (ptr) {
 		block = (struct list_head *)ptr - 1;
 		list_del(block);
 	}
-	block = realloc(block, sizeof(*block) + size);
-	if (!block)
+	oldblock = block;
+	block = realloc(oldblock, sizeof(*oldblock) + size);
+	if (!block) {
+		free(oldblock);
 		return NULL;
+	}
 	list_add(block, &malloc_list);
 	return block + 1;
 }
