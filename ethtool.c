@@ -5277,20 +5277,25 @@ static int do_get_phy_tunable(struct cmd_context *ctx)
 	return 0;
 }
 
-static __u32 parse_reset(char *val, __u32 bitset, char *arg, __u32 *data)
+static __u32 parse_reset(const char *val, __u32 bitset, const char *arg,
+			 __u32 *data)
 {
 	__u32 bitval = 0;
-	int i;
+	size_t vallen;
+	int strret;
 
 	/* Check for component match */
-	for (i = 0; val[i] != '\0'; i++)
-		if (arg[i] != val[i])
-			return 0;
+	vallen = strlen(val);
+	strret = strncmp(arg, val, vallen);
+	/* if strret is non-zero, no match */
+	if (strret)
+		return 0;
 
-	/* Check if component has -shared specified or not */
-	if (arg[i] == '\0')
+	/* check if the arg length is exactly the same as val length */
+	if (strlen(arg) == vallen)
 		bitval = bitset;
-	else if (!strcmp(arg+i, "-shared"))
+	/* Check if component has -shared specified or not */
+	else if (!strcmp(arg + vallen, "-shared"))
 		bitval = bitset << ETH_RESET_SHARED_SHIFT;
 
 	if (bitval) {
