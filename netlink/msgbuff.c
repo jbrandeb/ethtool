@@ -16,6 +16,20 @@
 #define MAX_MSG_SIZE (4 << 20)		/* 4 MB */
 
 /**
+ * msg_done() - destroy a message buffer
+ * @msgbuff: message buffer
+ *
+ * Free the buffer and reset size and remaining size.
+ */
+void msgbuff_done(struct nl_msg_buff *msgbuff)
+{
+	free(msgbuff->buff);
+	msgbuff->buff = NULL;
+	msgbuff->size = 0;
+	msgbuff->left = 0;
+}
+
+/**
  * msgbuff_realloc() - reallocate buffer if needed
  * @msgbuff:  message buffer
  * @new_size: requested minimum size (add MNL_SOCKET_BUFFER_SIZE if zero)
@@ -44,19 +58,14 @@ int msgbuff_realloc(struct nl_msg_buff *msgbuff, unsigned int new_size)
 		return -EMSGSIZE;
 	nbuff = realloc(msgbuff->buff, new_size);
 	if (!nbuff) {
-		msgbuff->buff = NULL;
-		msgbuff->size = 0;
-		msgbuff->left = 0;
+		msgbuff_done(msgbuff);
 		return -ENOMEM;
 	}
-	if (nbuff != msgbuff->buff) {
-		if (new_size > old_size)
-			memset(nbuff + old_size, '\0', new_size - old_size);
-		msgbuff->nlhdr = (struct nlmsghdr *)(nbuff + nlhdr_off);
-		msgbuff->genlhdr = (struct genlmsghdr *)(nbuff + genlhdr_off);
-		msgbuff->payload = nbuff + payload_off;
-		msgbuff->buff = nbuff;
-	}
+	memset(nbuff + old_size, '\0', new_size - old_size);
+	msgbuff->nlhdr = (struct nlmsghdr *)(nbuff + nlhdr_off);
+	msgbuff->genlhdr = (struct genlmsghdr *)(nbuff + genlhdr_off);
+	msgbuff->payload = nbuff + payload_off;
+	msgbuff->buff = nbuff;
 	msgbuff->size = new_size;
 	msgbuff->left += (new_size - old_size);
 
@@ -239,18 +248,4 @@ int msg_init(struct nl_context *nlctx, struct nl_msg_buff *msgbuff, int cmd,
 void msgbuff_init(struct nl_msg_buff *msgbuff)
 {
 	memset(msgbuff, '\0', sizeof(*msgbuff));
-}
-
-/**
- * msg_done() - destroy a message buffer
- * @msgbuff: message buffer
- *
- * Free the buffer and reset size and remaining size.
- */
-void msgbuff_done(struct nl_msg_buff *msgbuff)
-{
-	free(msgbuff->buff);
-	msgbuff->buff = NULL;
-	msgbuff->size = 0;
-	msgbuff->left = 0;
 }
