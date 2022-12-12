@@ -16,8 +16,23 @@ PKG_PROG_PKG_CONFIG
 dnl Checks for libraries.
 
 dnl Checks for header files.
+AC_CHECK_HEADERS([arpa/inet.h inttypes.h limits.h malloc.h netinet/in.h stddef.h stdint.h stdlib.h string.h sys/ioctl.h sys/socket.h unistd.h])
 
 dnl Checks for typedefs, structures, and compiler characteristics.
+AC_CHECK_HEADER_STDBOOL
+AC_C_INLINE
+AC_TYPE_INT16_T
+AC_TYPE_INT32_T
+AC_TYPE_INT64_T
+AC_TYPE_INT8_T
+AC_TYPE_MODE_T
+AC_TYPE_SIZE_T
+AC_TYPE_SSIZE_T
+AC_TYPE_UINT16_T
+AC_TYPE_UINT32_T
+AC_TYPE_UINT64_T
+AC_TYPE_UINT8_T
+AC_CHECK_TYPES([ptrdiff_t])
 AC_MSG_CHECKING([whether <linux/types.h> defines big-endian types])
 AC_TRY_COMPILE([#include <linux/types.h>],
 	       [__be16 foo;__be32 bar;],
@@ -28,7 +43,9 @@ AC_TRY_COMPILE([#include <linux/types.h>],
 
 dnl Checks for library functions.
 AC_HEADER_STDC
-AC_CHECK_FUNCS(socket strtol)
+AC_FUNC_MALLOC
+AC_FUNC_REALLOC
+AC_CHECK_FUNCS([dup2 memset socket strcasecmp strchr strcspn strdup strerror strncasecmp strstr strtol strtoul strtoull uname])
 
 dnl Check for options
 AC_ARG_ENABLE(pretty-dump,
